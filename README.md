@@ -15,8 +15,8 @@ _**Subject to change**_
 
 _**Subject to change**_
 
-`client` - React frontend code
-`client/assets` - Images, icons, etc.
-`client/components` - React components
-`client/styles` - Custom CSS styles
-`server` - Backend server/database code
+ - `client` - React frontend code
+ - `client/assets` - Images, icons, etc.
+ - `client/components` - React components
+ - `client/styles` - Custom CSS styles
+ - `server` - Backend server/database code
