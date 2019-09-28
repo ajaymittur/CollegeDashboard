@@ -15,8 +15,9 @@ function LoginForm() {
 					</Header>
 					<Form size='large'>
 						<Segment raised inverted color='orange' secondary>
-							<Form.Input fluid icon='address card' iconPosition='left' placeholder='Email' type='input' />
-							<Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password' />
+							<Form.Input fluid icon='address card' iconPosition='left' placeholder='Email' name='email' type='input' />
+							<Message warning header='Could you check something!' list={["That e-mail has been subscribed, but you have not yet clicked the verification link in your e-mail."]} />
+							<Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' name='password' type='password' />
 							<Button type='submit'>Login</Button>
 							<Button inverted onClick={() => setSignUp(true)}>
 								Sign Up
