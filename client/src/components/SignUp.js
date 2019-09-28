@@ -36,7 +36,7 @@ function SignUp() {
 				</Header>
 				<Form error size='large' onSubmit={validateAndSubmit}>
 					<Segment raised inverted color='orange' secondary size='large' textAlign='left'>
-						<Form.Input fluid required label='Enter Email' placeholder='Email' name='email' type='input' />
+						<Form.Input fluid label='Enter Email' placeholder='Email' name='email' type='input' />
 						{correctEmail === false && <Message error header='Wrong email' content='Check your email address!' size='small' />}
 						<Form.Input fluid label='Enter Name' placeholder='Name' name='name' type='input' />
 						<Form.Input fluid label='Enter Password' placeholder='Password' name='password' type='password' />
