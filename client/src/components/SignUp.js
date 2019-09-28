@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 function SignUp() {
 	const [passMatch, setPassMatch] = useState(true)
 	const [correctEmail, setCorrectEmail] = useState(true)
+	const [allFilled, setAllFilled] = useState(true)
 
 	document.title = "CollegeDashboard | Sign Up"
 
@@ -13,6 +14,7 @@ function SignUp() {
 		let email = e.target.email.value
 		let pass = e.target.password.value
 		let repass = e.target.repassword.value
+		let name = e.target.name.value
 		console.log(e.target.value)
 
 		if (pass !== repass) setPassMatch(false)
@@ -21,7 +23,10 @@ function SignUp() {
 		if (!email.includes("@") || !email.includes(".")) setCorrectEmail(false)
 		else setCorrectEmail(true)
 
-		if (passMatch && correctEmail)
+		if (!email || !pass || !repass || !name) setAllFilled(false)
+		else setAllFilled(true)
+
+		if (passMatch && correctEmail && allFilled)
 			fetch("/signup/submit", {
 				method: "POST",
 				body: new FormData(e.target)
@@ -31,7 +36,7 @@ function SignUp() {
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 			<Grid.Column style={{ maxWidth: 450 }}>
-				<Header as='h3' textAlign='center' color='orange'>
+				<Header as='h2' textAlign='center' color='orange'>
 					Create your account
 				</Header>
 				<Form error size='large' onSubmit={validateAndSubmit}>
@@ -43,6 +48,7 @@ function SignUp() {
 						<Form.Input fluid label='Re-enter Password' placeholder='Password' name='repassword' type='password' />
 						{passMatch === false && <Message error header='Passwords do not match' content='Make sure you re-enter the same password' size='small' />}
 						<Button type='submit'>Sign Up</Button>
+						{allFilled === false && <Message error header='All fields compulsory' content='Make sure you fill in all the fields' size='small' />}
 					</Segment>
 					<Message>
 						Already have an account? <Link to='/'>Login</Link>
