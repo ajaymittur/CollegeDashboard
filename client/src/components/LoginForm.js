@@ -10,7 +10,7 @@ function LoginForm() {
 		return (
 			<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 				<Grid.Column style={{ maxWidth: 450 }}>
-					<Header as='h3' color='orange' textAlign='center'>
+					<Header as='h2' color='orange' textAlign='center'>
 						Hello, there. Login to your account
 					</Header>
 					<Form size='large'>
