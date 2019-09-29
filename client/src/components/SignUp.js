@@ -3,6 +3,7 @@ import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 
+
 function SignUp() {
 	const [passMatch, setPassMatch] = useState(true)
 	const [correctEmail, setCorrectEmail] = useState(true)
