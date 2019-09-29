@@ -3,6 +3,7 @@ import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, Redirect } from "react-router-dom"
 import axios from "axios"
 
+
 function LoginForm() {
 	const [signUp, setSignUp] = useState(false)
 	const [allFilled, setAllFilled] = useState(true)
@@ -44,6 +45,7 @@ function LoginForm() {
 					<Header as='h2' color='orange' textAlign='center'>
 						Hello, there. Login to your account
 					</Header>
+
 					<Form size='large' onSubmit={validateAndSubmit}>
 						<Segment raised inverted color='orange' secondary>
 							<Form.Input

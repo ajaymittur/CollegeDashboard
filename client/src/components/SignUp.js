@@ -5,8 +5,6 @@ import axios from "axios"
 
 function SignUp() {
 	const [passMatch, setPassMatch] = useState(true)
-	const [correctEmail, setCorrectEmail] = useState(true)
-	const [allFilled, setAllFilled] = useState(true)
 
 	document.title = "CollegeDashboard | Sign Up"
 

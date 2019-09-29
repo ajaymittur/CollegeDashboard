@@ -4,8 +4,6 @@ import { Link } from "react-router-dom"
 import axios from "axios"
 
 function ResetPassForm() {
-	const [correctEmail, setCorrectEmail] = useState(true)
-	const [allFilled, setAllFilled] = useState(true)
 	document.title = "CollegeDashboard | Reset"
 
 	function validateAndSubmit(e) {
@@ -16,7 +14,7 @@ function ResetPassForm() {
 			email: email,
 			usn: usn
 		}
-
+    
 		if (!(email.includes("@") && email.includes("."))) {
 			setCorrectEmail(false)
 			return
