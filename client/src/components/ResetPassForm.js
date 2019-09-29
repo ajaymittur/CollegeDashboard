@@ -4,8 +4,6 @@ import { Link } from "react-router-dom"
 import axios from 'axios'
 
 function ResetPassForm() {
-	const [correctEmail, setCorrectEmail] = useState(true)
-	const [allFilled, setAllFilled] = useState(true)
 	document.title = "CollegeDashboard | Reset"
 
 	function validate(e) {
@@ -17,17 +15,11 @@ function ResetPassForm() {
 			usn: usn
 		}
 
-		if (!email.includes("@") || !email.includes(".")) setCorrectEmail(false)
-		else setCorrectEmail(true)
-		if (!email || !usn) setAllFilled(false)
-		else setAllFilled(true)
-
-		if (correctEmail && allFilled)
-			axios.post("http://localhost:4000/reset/submit", {
+		axios.post("http://localhost:4000/reset/submit", {
 					body: data
 				})
-				.then(res => console.log(res.data))
-				.catch(err => console.log(err))
+			.then(res => console.log(res.data))
+			.catch(err => console.log(err))
 	} 
 
 	return (
@@ -41,18 +33,18 @@ function ResetPassForm() {
 							<Form.Input fluid   
 							placeholder='Email' 
 							name='email' 
-							type='input'
-							label='Enter Email' />
-							{correctEmail === false && <Message error header='Invalid email' content='Check your email address' size='small' />}
+							type='email'
+							label='Enter Email'
+							required />
 							<Form.Input fluid  
 							placeholder='USN' 
 							name='usn' 
 							type='text' 
-							label='Enter USN' />
+							label='Enter USN' 
+							required />
 							<Button type='submit'>
 								Reset
 							</Button>
-							{allFilled === false && <Message error header='All fields compulsory' content='Make sure you fill in all the fields' size='small' />}
 						</Segment>
 						<Message>
 							Want to Login? <Link to='/'>Sign In</Link>
