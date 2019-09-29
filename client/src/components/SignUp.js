@@ -5,6 +5,8 @@ import axios from "axios"
 
 function SignUp() {
 	const [passMatch, setPassMatch] = useState(true)
+	const [allFilled, setAllFilled] = useState(true)
+	const [correctEmail, setCorrectEmail] = useState(true)
 
 	document.title = "CollegeDashboard | Sign Up"
 
@@ -25,23 +27,20 @@ function SignUp() {
 		if (pass !== repass) setPassMatch(false)
 		else setPassMatch(true)
 
-		if (!(email.includes("@") && email.includes("."))) {
-			setCorrectEmail(false)
-			return
-		} else setCorrectEmail(true)
+		if (!(email.includes("@") && email.includes("."))) setCorrectEmail(false)
+		else setCorrectEmail(true)
 
-		if (!email || !pass || !repass || !name) {
-			setAllFilled(false)
-			return
-		} else setAllFilled(true)
+		if (!email || !pass || !repass || !name) setAllFilled(false)
+		else setAllFilled(true)
 
-		if (passMatch && correctEmail && allFilled)
+		if (passMatch && correctEmail && allFilled) {
 			axios
 				.post("http://localhost:4000/signup/submit", {
 					body: data
 				})
 				.then(res => console.log(res.data))
 				.catch(err => console.log(err))
+		}
 	}
 
 	return (
