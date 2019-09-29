@@ -11,17 +11,17 @@ app.use(function(req, res, next) {
 
 app.use(express.json())
 
+app.post("/login/submit", (req, res) => {
+	console.log(req.body.body)
+	res.send(req.body.body)
+})
+
 app.post("/signup/submit", (req, res) => {
 	console.log(req.body.body)
 	res.send(req.body.body)
 })
 
-app.post("/signin/submit", (req, res) => {
-	console.log(req.body.body)
-	res.send(req.body.body)
-})
-
-app.post('/reset/submit', (req, res) => {
+app.post("/reset/submit", (req, res) => {
 	console.log(req.body.body)
 	res.send(req.body.body)
 })
