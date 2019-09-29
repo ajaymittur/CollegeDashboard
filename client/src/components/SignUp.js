@@ -36,7 +36,6 @@ function SignUp() {
 		if (passMatch && correctEmail && allFilled)
 			axios
 				.post("http://localhost:4000/signup/submit", {
-					method: "POST",
 					body: data
 				})
 				.then(res => console.log(res.data))
