@@ -1,6 +1,24 @@
 const express = require("express")
 const app = express()
 const PORT = 4000
+const admin = require('firebase-admin')
+
+admin.initializeApp({
+  credential: admin.credential.applicationDefault()
+});
+
+const db = admin.firestore()
+
+admin.initializeApp(functions.config().firebase)
+
+let db = admin.firestore()
+
+// let docRef = db.collection('StudentLogin').doc('xxx');
+
+// let setAda = docRef.set({
+//   email: 'lol@gmail.com',
+//   password: 'lol'
+// })
 
 // Enable CORS
 app.use(function(req, res, next) {
