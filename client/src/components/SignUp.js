@@ -1,47 +1,29 @@
-import React, { useState } from "react"
+import React from "react"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link } from "react-router-dom"
-import axios from "axios"
+import useForm from "../customHooks/useForm"
+
+const ENDPOINT = "http://localhost:4000/signup/submit"
+
+function validate(data) {
+	let errors = {}
+
+	if (data.password !== data.repassword) errors.passMatch = false
+	else errors.passMatch = true
+
+	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) errors.correctEmail = false
+	else errors.correctEmail = true
+
+	if (!data.email || !data.password || !data.repassword || !data.name || !data.usn)
+		errors.allFilled = false
+	else errors.allFilled = true
+
+	return errors
+}
 
 function SignUp() {
-	const [passMatch, setPassMatch] = useState(true)
-	const [allFilled, setAllFilled] = useState(true)
-	const [correctEmail, setCorrectEmail] = useState(true)
-
+	const { handleSubmit, handleChange, errors } = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Sign Up"
-
-	function validateAndSubmit(e) {
-		e.preventDefault()
-		let email = e.target.email.value
-		let pass = e.target.password.value
-		let repass = e.target.repassword.value
-		let name = e.target.name.value
-		let usn = e.target.usn.value
-		const data = {
-			email: email,
-			password: pass,
-			name: name,
-			usn: usn
-		}
-
-		if (pass !== repass) setPassMatch(false)
-		else setPassMatch(true)
-
-		if (!(email.includes("@") && email.includes("."))) setCorrectEmail(false)
-		else setCorrectEmail(true)
-
-		if (!email || !pass || !repass || !name) setAllFilled(false)
-		else setAllFilled(true)
-
-		if (passMatch && correctEmail && allFilled) {
-			axios
-				.post("http://localhost:4000/signup/submit", {
-					body: data
-				})
-				.then(res => console.log(res.data))
-				.catch(err => console.log(err))
-		}
-	}
 
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
@@ -49,10 +31,17 @@ function SignUp() {
 				<Header as='h2' textAlign='center' color='orange'>
 					Create your account
 				</Header>
-				<Form error size='large' onSubmit={validateAndSubmit}>
+				<Form error size='large' onSubmit={handleSubmit}>
 					<Segment raised inverted color='orange' secondary size='large' textAlign='left'>
-						<Form.Input fluid label='Enter Email' placeholder='Email' name='email' type='input' />
-						{correctEmail === false && (
+						<Form.Input
+							fluid
+							onChange={handleChange}
+							label='Enter Email'
+							placeholder='Email'
+							name='email'
+							type='input'
+						/>
+						{errors.correctEmail === false && (
 							<Message
 								error
 								header='Invalid email'
@@ -60,10 +49,25 @@ function SignUp() {
 								size='small'
 							/>
 						)}
-						<Form.Input fluid label='Enter Name' placeholder='Name' name='name' type='input' />
-						<Form.Input fluid label='Enter USN' placeholder='USN' name='usn' type='input' />
 						<Form.Input
 							fluid
+							onChange={handleChange}
+							label='Enter Name'
+							placeholder='Name'
+							name='name'
+							type='input'
+						/>
+						<Form.Input
+							fluid
+							onChange={handleChange}
+							label='Enter USN'
+							placeholder='USN'
+							name='usn'
+							type='input'
+						/>
+						<Form.Input
+							fluid
+							onChange={handleChange}
 							label='Enter Password'
 							placeholder='Password'
 							name='password'
@@ -71,12 +75,13 @@ function SignUp() {
 						/>
 						<Form.Input
 							fluid
+							onChange={handleChange}
 							label='Re-enter Password'
 							placeholder='Password'
 							name='repassword'
 							type='password'
 						/>
-						{passMatch === false && (
+						{errors.passMatch === false && (
 							<Message
 								error
 								header='Passwords do not match'
@@ -85,7 +90,7 @@ function SignUp() {
 							/>
 						)}
 						<Button type='submit'>Sign Up</Button>
-						{allFilled === false && (
+						{errors.allFilled === false && (
 							<Message
 								error
 								header='All fields compulsory'

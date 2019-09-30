@@ -1,40 +1,27 @@
-import React, { useState } from "react"
+// TODO: fix correctEmail and allFilled value updating in next submit issue
+
+import React from "react"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link } from "react-router-dom"
-import axios from "axios"
+import useForm from "../customHooks/useForm"
+
+const ENDPOINT = "http://localhost:4000/reset/submit"
+
+function validate(data) {
+	let errors = {}
+
+	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) errors.correctEmail = false
+	else errors.correctEmail = true
+
+	if (!data.email || !data.usn) errors.allFilled = false
+	else errors.allFilled = true
+
+	return errors
+}
 
 function ResetPassForm() {
-	const [allFilled, setAllFilled] = useState(true)
-	const [correctEmail, setCorrectEmail] = useState(true)
+	const { handleSubmit, handleChange, errors } = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Reset"
-
-	function validateAndSubmit(e) {
-		e.preventDefault()
-		let email = e.target.email.value
-		let usn = e.target.usn.value
-		const data = {
-			email: email,
-			usn: usn
-		}
-
-		if (!(email.includes("@") && email.includes("."))) {
-			setCorrectEmail(false)
-			return
-		} else setCorrectEmail(true)
-
-		if (!email || !usn) {
-			setAllFilled(false)
-			return
-		} else setAllFilled(true)
-
-		if (correctEmail && allFilled)
-			axios
-				.post("http://localhost:4000/reset/submit", {
-					body: data
-				})
-				.then(res => console.log(res.data))
-				.catch(err => console.log(err))
-	}
 
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
@@ -42,10 +29,17 @@ function ResetPassForm() {
 				<Header as='h2' color='orange' textAlign='center'>
 					Reset Password
 				</Header>
-				<Form size='large' onSubmit={validateAndSubmit} error>
+				<Form error size='large' onSubmit={handleSubmit}>
 					<Segment raised inverted color='orange' secondary textAlign='left'>
-						<Form.Input fluid placeholder='Email' name='email' type='input' label='Enter Email' />
-						{correctEmail === false && (
+						<Form.Input
+							fluid
+							onChange={handleChange}
+							placeholder='Email'
+							name='email'
+							type='input'
+							label='Enter Email'
+						/>
+						{errors.correctEmail === false && (
 							<Message
 								error
 								header='Invalid email'
@@ -53,9 +47,16 @@ function ResetPassForm() {
 								size='small'
 							/>
 						)}
-						<Form.Input fluid placeholder='USN' name='usn' type='text' label='Enter USN' />
+						<Form.Input
+							fluid
+							onChange={handleChange}
+							placeholder='USN'
+							name='usn'
+							type='text'
+							label='Enter USN'
+						/>
 						<Button type='submit'>Reset</Button>
-						{allFilled === false && (
+						{errors.allFilled === false && (
 							<Message
 								error
 								header='All fields compulsory'
