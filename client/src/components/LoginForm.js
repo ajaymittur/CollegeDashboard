@@ -1,42 +1,28 @@
+// TODO: Implement wrong username/password error message
+
 import React, { useState } from "react"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, Redirect } from "react-router-dom"
-import axios from "axios"
+import useForm from "../customHooks/useForm"
 
+const ENDPOINT = "http://localhost:4000/login/submit"
+
+function validate(data) {
+	let errors = {}
+
+	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) errors.correctEmail = false
+	else errors.correctEmail = true
+
+	if (!data.email || !data.password) errors.allFilled = false
+	else errors.allFilled = true
+
+	return errors
+}
 
 function LoginForm() {
 	const [signUp, setSignUp] = useState(false)
-	const [allFilled, setAllFilled] = useState(true)
-	const [correctEmail, setCorrectEmail] = useState(true)
+	const { handleSubmit, handleChange, errors } = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Login"
-
-	function validateAndSubmit(e) {
-		e.preventDefault()
-		let email = e.target.email.value
-		let pass = e.target.password.value
-		const data = {
-			email: email,
-			password: pass
-		}
-
-		if (!(email.includes("@") && email.includes("."))) {
-			setCorrectEmail(false)
-			return
-		} else setCorrectEmail(true)
-
-		if (!email || !pass) {
-			setAllFilled(false)
-			return
-		} else setAllFilled(true)
-
-		if (correctEmail && allFilled)
-			axios
-				.post("http://localhost:4000/login/submit", {
-					body: data
-				})
-				.then(res => console.log(res.data))
-				.catch(err => console.log(err))
-	}
 
 	if (!signUp) {
 		return (
@@ -46,25 +32,29 @@ function LoginForm() {
 						Hello, there. Login to your account
 					</Header>
 
-					<Form size='large' onSubmit={validateAndSubmit}>
+					<Form error size='large' onSubmit={handleSubmit}>
 						<Segment raised inverted color='orange' secondary>
 							<Form.Input
 								fluid
+								onChange={handleChange}
 								icon='address card'
 								iconPosition='left'
 								placeholder='Email'
 								name='email'
 								type='input'
 							/>
-							<Message
-								warning
-								header='Could you check something!'
-								list={[
-									"That e-mail has been subscribed, but you have not yet clicked the verification link in your e-mail."
-								]}
-							/>
+							{errors.correctEmail === false && (
+								<Message
+									error
+									header='Invalid email'
+									content='Check your email address'
+									size='small'
+									textAlign='left'
+								/>
+							)}
 							<Form.Input
 								fluid
+								onChange={handleChange}
 								icon='lock'
 								iconPosition='left'
 								placeholder='Password'
@@ -75,6 +65,14 @@ function LoginForm() {
 							<Button inverted onClick={() => setSignUp(true)}>
 								Sign Up
 							</Button>
+							{errors.allFilled === false && (
+								<Message
+									error
+									header='All fields compulsory'
+									content='Make sure you fill in all the fields'
+									size='small'
+								/>
+							)}
 						</Segment>
 						<Message>
 							Forgot your password? <Link to='/reset'>Reset</Link>
