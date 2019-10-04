@@ -26,9 +26,7 @@ export default function useForm(ENDPOINT, validationFn) {
 
 		if (submit && errors.allFilled && errors.correctEmail && errors.passMatch) {
 			axios
-				.post(ENDPOINT, {
-					formData
-				})
+				.post(ENDPOINT, formData)
 				.then(res => {
 					setSubmitResponse(res.data.isSuccess)
 					console.log(res.data.message)
