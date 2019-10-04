@@ -29,8 +29,14 @@ export default function useForm(ENDPOINT, validationFn) {
 				.post(ENDPOINT, {
 					formData
 				})
-				.then(res => setSubmitResponse(res.data))
-				.catch(console.error)
+				.then(res => {
+					setSubmitResponse(res.data.isSuccess)
+					console.log(res.data.message)
+				})
+				.catch(error => {
+					setSubmitResponse(error.response.data.isSuccess)
+					console.error(error.response.data.message)
+				})
 			setSubmit(false)
 		}
 	}, [submit, formData])
