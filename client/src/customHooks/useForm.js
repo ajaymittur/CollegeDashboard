@@ -5,6 +5,7 @@ export default function useForm(ENDPOINT, validationFn) {
 	const [errors, setErrors] = useState({})
 	const [submit, setSubmit] = useState(false)
 	const [formData, setFormData] = useState({})
+	const [submitResponse, setSubmitResponse] = useState(false)
 
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -26,13 +27,13 @@ export default function useForm(ENDPOINT, validationFn) {
 		if (submit && errors.allFilled && errors.correctEmail && errors.passMatch) {
 			axios
 				.post(ENDPOINT, {
-					body: formData
+					formData
 				})
-				.then(res => console.log(res.data))
-				.catch(err => console.log(err))
+				.then(res => setSubmitResponse(res.data))
+				.catch(console.error)
+			setSubmit(false)
 		}
-		setSubmit(false)
 	}, [submit, formData])
 
-	return { handleSubmit, handleChange, errors }
+	return { handleSubmit, handleChange, submitResponse, errors }
 }
