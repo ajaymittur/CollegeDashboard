@@ -9,6 +9,16 @@ admin.initializeApp({
 
 let db = admin.firestore()
 
+async function login(accountDetails) {
+	let userDataDoc = await db.doc("accounts/oqrwdYfqZCDqTjysdUJ1").get()
+	let userData = userDataDoc.data()
+	if (accountDetails.email === userData.email && accountDetails.password === userData.password)
+		return true
+	else return false
+}
+
+module.exports.login = login
+
 // Write document with given data into collection
 // db.collection("testcollection")
 // 	.doc("testdoc")
