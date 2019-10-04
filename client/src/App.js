@@ -3,7 +3,7 @@ import "./App.css"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import LoginForm from "./components/LoginForm"
 import ResetPassForm from "./components/ResetPassForm"
-import SignUp from "./components/SignUp"
+import SignUpForm from "./components/SignUpForm"
 import NotFound from "./components/NotFound"
 
 function App() {
@@ -17,9 +17,9 @@ function App() {
 					<ResetPassForm />
 				</Route>
 				<Route path='/signup'>
-					<SignUp />
+					<SignUpForm />
 				</Route>
-				<Route> 
+				<Route>
 					<NotFound />
 				</Route>
 			</Switch>
