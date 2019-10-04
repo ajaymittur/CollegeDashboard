@@ -5,7 +5,7 @@ export default function useForm(ENDPOINT, validationFn) {
 	const [errors, setErrors] = useState({})
 	const [submit, setSubmit] = useState(false)
 	const [formData, setFormData] = useState({})
-	const [submitResponse, setSubmitResponse] = useState(false)
+	const [submitResponse, setSubmitResponse] = useState()
 
 	const handleSubmit = e => {
 		e.preventDefault()
