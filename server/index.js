@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const PORT = 4000
+const db = require("./database/db")
 
 // Enable CORS
 app.use(function(req, res, next) {
@@ -11,19 +12,19 @@ app.use(function(req, res, next) {
 
 app.use(express.json())
 
-app.post("/login/submit", (req, res) => {
-	console.log("Login:", req.body.body)
-	res.send(req.body.body)
+app.post("/account/login", async (req, res) => {
+	let loginSuccess = await db.login(req.body.formData)
+	res.send(loginSuccess)
 })
 
-app.post("/signup/submit", (req, res) => {
-	console.log("SignUp:", req.body.body)
-	res.send(req.body.body)
+app.post("/account/signup", (req, res) => {
+	console.log("SignUp:", req.body.formData)
+	res.send(req.body.formData)
 })
 
-app.post("/reset/submit", (req, res) => {
-	console.log("Reset:", req.body.body)
-	res.send(req.body.body)
+app.post("/account/reset", (req, res) => {
+	console.log("Reset:", req.body.formData)
+	res.send(req.body.formData)
 })
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
