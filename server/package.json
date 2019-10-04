@@ -1,23 +1,24 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "server for react front-end of collegedashboard project",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ajaymittur28/CollegeDashboard.git"
-  },
-  "author": "Ajay Mittur",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ajaymittur28/CollegeDashboard/issues"
-  },
-  "homepage": "https://github.com/ajaymittur28/CollegeDashboard#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "nodemon": "^1.19.2"
-  }
+	"name": "server",
+	"version": "1.0.0",
+	"description": "server for react front-end of collegedashboard project",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ajaymittur28/CollegeDashboard.git"
+	},
+	"author": "Ajay Mittur",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ajaymittur28/CollegeDashboard/issues"
+	},
+	"homepage": "https://github.com/ajaymittur28/CollegeDashboard#readme",
+	"dependencies": {
+		"express": "^4.17.1",
+		"firebase-admin": "^8.6.0",
+		"nodemon": "^1.19.2"
+	}
 }
