@@ -3,7 +3,7 @@ import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link } from "react-router-dom"
 import useForm from "../customHooks/useForm"
 
-const ENDPOINT = "http://localhost:4000/signup/submit"
+const ENDPOINT = "http://localhost:4000/account/signup"
 
 function validate(data) {
 	let errors = {}
