@@ -17,8 +17,20 @@ async function login(accountDetails) {
 	else return false
 }
 
-module.exports.login = login
+async function signup(accountDetails) {
+	const { email, name, usn, password } = accountDetails
+	try {
+		let setDoc = db.collection('accounts').doc(usn).set({ email, password })
+		return true
+	} catch(err) {
+		return false
+	}
+}
 
+module.exports = {
+	login,
+	signup
+}
 // Write document with given data into collection
 // db.collection("testcollection")
 // 	.doc("testdoc")

@@ -20,7 +20,9 @@ app.post("/account/login", async (req, res) => {
 
 app.post("/account/signup", (req, res) => {
 	console.log("SignUp:", req.body)
-	res.send(req.body)
+	let signupSuccess = await db.signup(req.body)
+	if (!signupSuccess) res.status(400).json('Unable to signup')
+	else res.send(signupSuccess)
 })
 
 app.post("/account/reset", (req, res) => {
