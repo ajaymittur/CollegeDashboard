@@ -21,7 +21,7 @@ function validate(data) {
 	return errors
 }
 
-function SignUp() {
+function SignUpForm() {
 	const { handleSubmit, handleChange, errors } = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Sign Up"
 
@@ -108,4 +108,4 @@ function SignUp() {
 	)
 }
 
-export default SignUp
+export default SignUpForm
