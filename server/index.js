@@ -1,7 +1,8 @@
 const express = require("express")
 const app = express()
 const PORT = 4000
-const db = require("./database/db")
+// const db = require("./firebase/db")
+const auth = require("./firebase/auth")
 
 // Enable CORS
 app.use(function(req, res, next) {
@@ -13,15 +14,22 @@ app.use(function(req, res, next) {
 app.use(express.json())
 
 app.post("/account/login", async (req, res) => {
-	let isSuccess = await db.login(req.body)
-	if (isSuccess) res.send({ isSuccess, message: "Login Successful" })
-	else res.status(400).send({ isSuccess, message: "Unable to find user in database" })
+	// let isSuccess = await db.login(req.body)
+	let { isSuccess, message } = await auth.login(req.body)
+
+	if (isSuccess) res.status(201)
+	else res.status(400)
+
+	res.send({ isSuccess, message })
 })
 
 app.post("/account/signup", async (req, res) => {
-	let isSuccess = await db.signup(req.body)
-	if (isSuccess) res.send({ isSuccess, message: "SignUp Successful" })
-	else res.status(400).send({ isSuccess, message: "Unable to sign up due to some internal error" })
+	let { isSuccess, message } = await auth.signup(req.body).catch(console.log)
+
+	if (isSuccess) res.status(201)
+	else res.status(400)
+
+	res.send({ isSuccess, message })
 })
 
 app.post("/account/reset", (req, res) => {

@@ -22,9 +22,7 @@ export default function useForm(ENDPOINT, validationFn) {
 	}
 
 	useEffect(() => {
-		if (errors.passMatch === undefined) errors.passMatch = true
-
-		if (submit && errors.allFilled && errors.correctEmail && errors.passMatch) {
+		if (submit && Object.entries(errors).length === 0) {
 			axios
 				.post(ENDPOINT, formData)
 				.then(res => {
@@ -33,10 +31,14 @@ export default function useForm(ENDPOINT, validationFn) {
 				})
 				.catch(error => {
 					setSubmitResponse(error.response.data.isSuccess)
+					setErrors({
+						...errors,
+						message: error.response.data.message
+					})
 					console.error(error.response.data.message)
 				})
-			setSubmit(false)
 		}
+		setSubmit(false)
 	}, [submit, formData])
 
 	return { handleSubmit, handleChange, submitResponse, errors }
