@@ -18,11 +18,10 @@ app.post("/account/login", async (req, res) => {
 	else res.status(400).send({ isSuccess, message: "Unable to find user in database" })
 })
 
-app.post("/account/signup", (req, res) => {
-	console.log("SignUp:", req.body)
-	let signupSuccess = await db.signup(req.body)
-	if (!signupSuccess) res.status(400).json('Unable to signup')
-	else res.send(signupSuccess)
+app.post("/account/signup", async (req, res) => {
+	let isSuccess = await db.signup(req.body)
+	if (isSuccess) res.send({ isSuccess, message: "SignUp Successful" })
+	else res.status(400).send({ isSuccess, message: "Unable to sign up due to some internal error" })
 })
 
 app.post("/account/reset", (req, res) => {

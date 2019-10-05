@@ -10,7 +10,11 @@ admin.initializeApp({
 let db = admin.firestore()
 
 async function login(accountDetails) {
-	let userDataDoc = await db.doc("accounts/oqrwdYfqZCDqTjysdUJ1").get()
+	let userDataDoc = await db
+		.doc("accounts/2oqrwdYfqZCDqTjysdUJ1")
+		.get()
+		.catch(console.error)
+	if (!userDataDoc.exists) return false
 	let userData = userDataDoc.data()
 	if (accountDetails.email === userData.email && accountDetails.password === userData.password)
 		return true
@@ -19,12 +23,15 @@ async function login(accountDetails) {
 
 async function signup(accountDetails) {
 	const { email, name, usn, password } = accountDetails
-	try {
-		let setDoc = db.collection('accounts').doc(usn).set({ email, password })
-		return true
-	} catch(err) {
-		return false
-	}
+	let setDoc = db
+		.collection("accounts")
+		.doc(usn)
+		.set({ name, email, password, usn })
+		.catch(err => {
+			console.error(err)
+			return false
+		})
+	return true
 }
 
 module.exports = {
