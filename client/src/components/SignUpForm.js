@@ -8,21 +8,19 @@ const ENDPOINT = "http://localhost:4000/account/signup"
 function validate(data) {
 	let errors = {}
 
-	if (data.password !== data.repassword) errors.passMatch = false
-	else errors.passMatch = true
+	if (data.password !== data.repassword) errors.passMatch = "Passwords do not match"
 
-	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) errors.correctEmail = false
-	else errors.correctEmail = true
+	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email))
+		errors.correctEmail = "Enter a valid email address"
 
 	if (!data.email || !data.password || !data.repassword || !data.name || !data.usn)
-		errors.allFilled = false
-	else errors.allFilled = true
+		errors.allFilled = "Make sure you fill in all the fields"
 
 	return errors
 }
 
 function SignUpForm() {
-	const { handleSubmit, handleChange, errors } = useForm(ENDPOINT, validate)
+	const { handleSubmit, handleChange, submitResponse, errors } = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Sign Up"
 
 	return (
@@ -41,14 +39,6 @@ function SignUpForm() {
 							name='email'
 							type='input'
 						/>
-						{errors.correctEmail === false && (
-							<Message
-								error
-								header='Invalid email'
-								content='Check your email address'
-								size='small'
-							/>
-						)}
 						<Form.Input
 							fluid
 							onChange={handleChange}
@@ -60,7 +50,7 @@ function SignUpForm() {
 						<Form.Input
 							fluid
 							onChange={handleChange}
-							label='Enter USN'
+							label='Enter USN (UID)'
 							placeholder='USN'
 							name='usn'
 							type='input'
@@ -81,20 +71,12 @@ function SignUpForm() {
 							name='repassword'
 							type='password'
 						/>
-						{errors.passMatch === false && (
-							<Message
-								error
-								header='Passwords do not match'
-								content='Make sure you re-enter the same password'
-								size='small'
-							/>
-						)}
 						<Button type='submit'>Sign Up</Button>
-						{errors.allFilled === false && (
+						{Object.entries(errors).length > 0 && (
 							<Message
 								error
-								header='All fields compulsory'
-								content='Make sure you fill in all the fields'
+								header='Error Creating New User'
+								list={Object.keys(errors).map(key => errors[key])}
 								size='small'
 							/>
 						)}
