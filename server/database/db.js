@@ -23,8 +23,7 @@ async function login(accountDetails) {
 async function signup(accountDetails) {
 	const { email, name, usn, password } = accountDetails
 	db.collection("accounts")
-		.doc(usn)
-		.set({ name, email, password, usn })
+		.add({ name, email, password, usn })
 		.catch(err => {
 			console.error(err)
 			return false
