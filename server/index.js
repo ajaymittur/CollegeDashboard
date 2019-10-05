@@ -14,6 +14,7 @@ app.use(express.json())
 
 app.post("/account/login", async (req, res) => {
 	let isSuccess = await db.login(req.body)
+	console.log("isSuccess", isSuccess)
 	if (isSuccess) res.send({ isSuccess, message: "Login Successful" })
 	else res.status(400).send({ isSuccess, message: "Unable to find user in database" })
 })
