@@ -22,7 +22,7 @@ export default function useForm(ENDPOINT, validationFn) {
 	}
 
 	useEffect(() => {
-		if (submit && Object.entries(errors).length == 0) {
+		if (submit && Object.entries(errors).length === 0) {
 			axios
 				.post(ENDPOINT, formData)
 				.then(res => {

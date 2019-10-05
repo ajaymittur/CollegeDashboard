@@ -1,6 +1,6 @@
 import React from "react"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import useForm from "../customHooks/useForm"
 
 const ENDPOINT = "http://localhost:4000/account/signup"
@@ -19,9 +19,11 @@ function validate(data) {
 	return errors
 }
 
-function SignUpForm() {
+function SignUpForm(props) {
 	const { handleSubmit, handleChange, submitResponse, errors } = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Sign Up"
+
+	if (submitResponse === true) props.history.push("/student/details")
 
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
@@ -50,7 +52,7 @@ function SignUpForm() {
 						<Form.Input
 							fluid
 							onChange={handleChange}
-							label='Enter USN (UID)'
+							label='Enter USN'
 							placeholder='USN'
 							name='usn'
 							type='input'
@@ -90,4 +92,4 @@ function SignUpForm() {
 	)
 }
 
-export default SignUpForm
+export default withRouter(SignUpForm)
