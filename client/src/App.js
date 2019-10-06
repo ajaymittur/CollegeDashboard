@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm"
 import ResetPassForm from "./components/ResetPassForm"
 import SignUpForm from "./components/SignUpForm"
 import NotFound from "./components/NotFound"
+import InfoCards from "./components/InfoCards"
 
 function App() {
 	return (
@@ -18,6 +19,10 @@ function App() {
 				</Route>
 				<Route path='/signup'>
 					<SignUpForm />
+				</Route>
+				<Route path='/jason'>
+					{/*<Navbar />*/}
+					<InfoCards />
 				</Route>
 				<Route>
 					<NotFound />
