@@ -2,7 +2,7 @@
 
 import React from "react"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
-import { Link, withRouter } from "react-router-dom"
+import { Link } from "react-router-dom"
 import useForm from "../customHooks/useForm"
 
 const ENDPOINT = "http://localhost:4000/account/login"
@@ -61,7 +61,7 @@ function LoginForm(props) {
 							type='password'
 						/>
 						<Button type='submit'>Login</Button>
-						<Button inverted onClick={() => props.history.push("/signup")}>
+						<Button inverted as={Link} to='/signup'>
 							Sign Up
 						</Button>
 						{errors.allFilled === false && (
@@ -90,4 +90,4 @@ function LoginForm(props) {
 	)
 }
 
-export default withRouter(LoginForm)
+export default LoginForm
