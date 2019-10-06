@@ -10,11 +10,10 @@ const ENDPOINT = "http://localhost:4000/account/login"
 function validate(data) {
 	let errors = {}
 
-	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) errors.correctEmail = false
-	else errors.correctEmail = true
+	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email))
+		errors.correctEmail = "Enter a valid email address"
 
-	if (!data.email || !data.password) errors.allFilled = false
-	else errors.allFilled = true
+	if (!data.email || !data.password) errors.allFilled = "Make sure you fill in all the fields"
 
 	return errors
 }
@@ -31,7 +30,6 @@ function LoginForm(props) {
 				<Header as='h2' color='orange' textAlign='center'>
 					Hello, there. Login to your account
 				</Header>
-
 				<Form error size='large' onSubmit={handleSubmit}>
 					<Segment raised inverted color='orange' secondary>
 						<Form.Input
@@ -43,14 +41,6 @@ function LoginForm(props) {
 							name='email'
 							type='input'
 						/>
-						{errors.correctEmail === false && (
-							<Message
-								error
-								header='Invalid email'
-								content='Check your email address'
-								size='small'
-							/>
-						)}
 						<Form.Input
 							fluid
 							onChange={handleChange}
@@ -64,21 +54,13 @@ function LoginForm(props) {
 						<Button inverted as={Link} to='/signup'>
 							Sign Up
 						</Button>
-						{errors.allFilled === false && (
-							<Message
-								error
-								header='All fields compulsory'
-								content='Make sure you fill in all the fields'
-								size='small'
-							/>
-						)}
 					</Segment>
-					{submitResponse === false && (
+					{Object.entries(errors).length > 0 && (
 						<Message
 							error
-							header='Email / Password Incorrect'
-							content='No account was found with the given email and password'
-							size='tiny'
+							header='Could Not Sign In'
+							content='Email / Password is incorrect'
+							size='small'
 						/>
 					)}
 					<Message>
