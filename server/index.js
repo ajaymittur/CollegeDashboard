@@ -14,17 +14,16 @@ app.use(function(req, res, next) {
 app.use(express.json())
 
 app.post("/account/login", async (req, res) => {
-	// let isSuccess = await db.login(req.body)
 	let { isSuccess, message } = await auth.login(req.body)
 
-	if (isSuccess) res.status(201)
+	if (isSuccess) res.status(202)
 	else res.status(400)
 
 	res.send({ isSuccess, message })
 })
 
 app.post("/account/signup", async (req, res) => {
-	let { isSuccess, message } = await auth.signup(req.body).catch(console.log)
+	let { isSuccess, message } = await auth.signup(req.body)
 
 	if (isSuccess) res.status(201)
 	else res.status(400)
@@ -32,9 +31,13 @@ app.post("/account/signup", async (req, res) => {
 	res.send({ isSuccess, message })
 })
 
-app.post("/account/reset", (req, res) => {
-	console.log("Reset:", req.body)
-	res.send(req.body)
+app.post("/account/reset", async (req, res) => {
+	let { isSuccess, message } = await auth.resetPass(req.body.email)
+
+	if (isSuccess) res.status(200)
+	else res.status(400)
+
+	res.send({ isSuccess, message })
 })
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
