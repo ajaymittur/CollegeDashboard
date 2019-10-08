@@ -2,7 +2,7 @@
 
 import React from "react"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import useForm from "../customHooks/useForm"
 
 const ENDPOINT = "http://localhost:4000/account/reset"
@@ -10,18 +10,17 @@ const ENDPOINT = "http://localhost:4000/account/reset"
 function validate(data) {
 	let errors = {}
 
-	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) errors.correctEmail = false
-	else errors.correctEmail = true
-
-	if (!data.email || !data.usn) errors.allFilled = false
-	else errors.allFilled = true
+	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email))
+		errors.correctEmail = "Enter a valid email address"
 
 	return errors
 }
 
-function ResetPassForm() {
-	const { handleSubmit, handleChange, errors } = useForm(ENDPOINT, validate)
+function ResetPassForm(props) {
+	const { handleSubmit, handleChange, submitResponse, errors } = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Reset"
+
+	if (submitResponse === true) props.history.push("/")
 
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
@@ -39,28 +38,12 @@ function ResetPassForm() {
 							type='input'
 							label='Enter Email'
 						/>
-						{errors.correctEmail === false && (
-							<Message
-								error
-								header='Invalid email'
-								content='Check your email address'
-								size='small'
-							/>
-						)}
-						<Form.Input
-							fluid
-							onChange={handleChange}
-							placeholder='USN'
-							name='usn'
-							type='text'
-							label='Enter USN'
-						/>
 						<Button type='submit'>Reset</Button>
-						{errors.allFilled === false && (
+						{Object.entries(errors).length > 0 && (
 							<Message
 								error
-								header='All fields compulsory'
-								content='Make sure you fill in all the fields'
+								header="Couldn't Reset Password"
+								list={Object.keys(errors).map(key => errors[key])}
 								size='small'
 							/>
 						)}
@@ -74,4 +57,4 @@ function ResetPassForm() {
 	)
 }
 
-export default ResetPassForm
+export default withRouter(ResetPassForm)

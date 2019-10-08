@@ -13,16 +13,20 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
-const fbdb = firebase.firestore()
-const fbauth = firebase.auth()
+const fireDB = firebase.firestore()
+const fireAuth = firebase.auth()
+
+const actionCodeSettings = {
+	url: "http://localhost:3000" // redirect url
+}
 
 async function signup(accountDetails) {
 	const { email, usn, name, password } = accountDetails
 
 	try {
-		let userRecord = await fbauth.createUserWithEmailAndPassword(email, password)
+		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password)
 
-		fbdb
+		fireDB
 			.collection("students")
 			.doc(usn)
 			.set({
@@ -44,14 +48,24 @@ async function login(accountDetails) {
 	const { email, password } = accountDetails
 
 	try {
-		let userRecord = await fbauth.signInWithEmailAndPassword(email, password)
+		let userRecord = await fireAuth.signInWithEmailAndPassword(email, password)
 		return { isSuccess: true, message: `Successfully logged in user: ${userRecord.user.uid}` }
 	} catch (error) {
 		return { isSuccess: false, message: error.message }
 	}
 }
 
+async function resetPass(email) {
+	try {
+		await fireAuth.sendPasswordResetEmail(email, actionCodeSettings)
+		return { isSuccess: true, message: `Password Reset mail has been sent to ${email}` }
+	} catch (error) {
+		return { isSuccess: false, message: "Couldn't find the provided email address in our records." }
+	}
+}
+
 module.exports = {
 	signup,
-	login
+	login,
+	resetPass
 }

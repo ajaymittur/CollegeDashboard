@@ -51,7 +51,7 @@ function LoginForm(props) {
 							type='password'
 						/>
 						<Button type='submit'>Login</Button>
-						<Button inverted onClick={() => props.history.push("/signup")}>
+						<Button inverted as={Link} to='/signup'>
 							Sign Up
 						</Button>
 					</Segment>
