@@ -43,8 +43,7 @@ class InfoCards extends React.Component {
 			attendance: [],
 			marks: [],
 			credits: [],
-			data: [],
-			counter: 0
+			data: []
 		}
 	}
 
@@ -93,7 +92,6 @@ class InfoCards extends React.Component {
 				<Card.Group centered itemsPerRow={4}>
 					{
 						this.state.subjects.map((sub, i) => {
-							this.setState({counter: this.state.counter + 1})
 							return (
 								<Cards 
 									key={i} 
