@@ -1,14 +1,13 @@
 import React from "react"
-import { Card, Image } from "semantic-ui-react"
-import { VictoryPie, VictoryBar, VictoryChart, VictoryAxis } from 'victory'
-import './Card.css'
+import { Card } from "semantic-ui-react"
+import { VictoryBar, VictoryChart, VictoryAxis } from 'victory'
+import './Cards.css'
 
-class Card extends React.Component {
+class Cards extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			name: this.props.name,
-			cgpa: this.props.cgpa,
 			subject: this.props.subject,
 			attendance: this.props.attendance,
 			marks: this.props.marks,
@@ -21,7 +20,7 @@ class Card extends React.Component {
 	}
 
 	render(){
-		const { name, cgpa, subject, attendance, marks, credits } = this.state
+		const { name, subject, attendance, marks, credits } = this.state
 		return (
 			<div>
 	  			<Card className='grow' raised>
@@ -37,7 +36,7 @@ class Card extends React.Component {
             				/>
 						<VictoryBar
 					    	style={{ data: { fill: "#f5a153" } }}
-					    	data={}
+					    	data={this.state.data}
 					    	barRatio={0.7}
 					    	labels={({datum}) => datum.y}
 					    	/>
@@ -58,4 +57,4 @@ class Card extends React.Component {
 	
 }
 
-export default InfoCards
+export default Cards

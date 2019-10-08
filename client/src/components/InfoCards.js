@@ -1,6 +1,7 @@
 import React from "react"
 import { Card, Image } from "semantic-ui-react"
 import { VictoryPie } from 'victory'
+import Cards from './Cards/Cards'
 
 /*Note: 1) All Data will be fetched using axios and will replace the static data.
 	  	2) All formatting/Styling/Height/Width/Line Breaking will be done later.*/
@@ -94,10 +95,9 @@ class InfoCards extends React.Component {
 						this.state.subjects.map((sub, i) => {
 							this.setState({counter: this.state.counter + 1})
 							return (
-								<Card 
+								<Cards 
 									key={i} 
 									name={name} 
-									cgpa={cgpa} 
 									subject={this.state.subjects[i]} 
 									attendance={this.state.attendance[i]} 
 									marks={this.state.marks[i]} 
