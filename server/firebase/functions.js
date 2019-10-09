@@ -25,9 +25,12 @@ async function signup(accountDetails) {
 
 	try {
 		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password)
+		userRecord.user.updateProfile({
+			displayName: name
+		})
 
 		fireDB
-			.collection("students")
+			.collection("accounts")
 			.doc(usn)
 			.set({
 				createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
@@ -64,8 +67,34 @@ async function resetPass(email) {
 	}
 }
 
+async function getCurrentUser() {
+	let user = fireAuth.currentUser
+	let response = {}
+	if (user) {
+		let docSnapshot = await fireDB
+			.collection("student")
+			.where("email", "==", user.email)
+			.get()
+		docSnapshot.forEach(doc => {
+			if (doc.exists) {
+				response = {
+					isSuccess: true,
+					userData: doc.data(),
+					message: "User data retrieved"
+				}
+			} else {
+				response = { isSuccess: false, message: "User Data not found" }
+			}
+		})
+		return response
+	} else {
+		return { isSuccess: false, message: "User Not Logged In" }
+	}
+}
+
 module.exports = {
 	signup,
 	login,
-	resetPass
+	resetPass,
+	getCurrentUser
 }
