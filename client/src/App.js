@@ -5,6 +5,8 @@ import LoginForm from "./components/LoginForm"
 import ResetPassForm from "./components/ResetPassForm"
 import SignUpForm from "./components/SignUpForm"
 import NotFound from "./components/NotFound"
+import NavBar from "./components/NavBar"
+import InputForm from "./components/dataForm"
 
 function App() {
 	return (
@@ -18,6 +20,12 @@ function App() {
 				</Route>
 				<Route path='/signup'>
 					<SignUpForm />
+				</Route>
+				<Route path='/navbar'>
+					<NavBar />
+				</Route>
+				<Route path='/dataform'>
+					<dataForm />
 				</Route>
 				<Route>
 					<NotFound />
