@@ -23,7 +23,6 @@ function FormExampleField() {
           </Form.Field>
         </Form>
       ))}
-      <Divider></Divider>
       <Button>Submit</Button>
     </Form>
   )
