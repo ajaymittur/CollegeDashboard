@@ -46,6 +46,9 @@ function InfoCards() {
 							<span>Student</span>
 						</Card.Meta>
 						<Card.Meta>
+							<span>USN: {USN}</span>
+						</Card.Meta>
+						<Card.Meta>
 							<span>Email: {email}</span>
 						</Card.Meta>
 						<Card.Description>{`${fullname} is a student with ${CGPA} CGPA.`}</Card.Description>
