@@ -40,7 +40,7 @@ app.post("/account/reset", async (req, res) => {
 	res.send({ isSuccess, message })
 })
 
-app.get("/student/data", async (req, res) => {
+app.get("/student/getData", async (req, res) => {
 	let data = await fb.getCurrentUser()
 
 	if (data.isSuccess) res.status(200)
