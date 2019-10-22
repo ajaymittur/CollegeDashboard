@@ -7,15 +7,18 @@ function FormExampleField() {
     <Form>
       <Form.Field
         name='subDisplay'
-        onChange={(e) => setSubCount(e.target.value)}
+        onChange={(e) => setSubCount(Number(e.target.value))}
       >
         <label>Enter the number of subjects:</label>
         <input />
       </Form.Field>
+      
       {[...Array(subCount)].map((e, i) => (
         <Form>
           <Form.Field key={i}>
-            <label>Subject {i + 1}:</label>
+            <label>Marks obtained in subject {i+1}:</label>
+            <input />
+            <label>Credits:</label>
             <input />
           </Form.Field>
         </Form>

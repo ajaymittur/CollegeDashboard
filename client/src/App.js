@@ -6,7 +6,7 @@ import ResetPassForm from "./components/ResetPassForm"
 import SignUpForm from "./components/SignUpForm"
 import NotFound from "./components/NotFound"
 import NavBar from "./components/NavBar"
-import InputForm from "./components/dataForm"
+import DataForm from "./components/DataForm"
 
 function App() {
 	return (
@@ -25,7 +25,7 @@ function App() {
 					<NavBar />
 				</Route>
 				<Route path='/dataform'>
-					<dataForm />
+					<DataForm />
 				</Route>
 				<Route>
 					<NotFound />
