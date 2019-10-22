@@ -30,7 +30,7 @@ export default function useForm(ENDPOINT, validationFn) {
 					console.log(res.data.message)
 				})
 				.catch(error => {
-					setSubmitResponse(error.response.data.isSuccess)
+					setSubmitResponse(error.data.isSuccess) // was previously error.response.data.isSuccess
 					setErrors({
 						...errors,
 						message: error.response.data.message
@@ -39,7 +39,7 @@ export default function useForm(ENDPOINT, validationFn) {
 				})
 		}
 		setSubmit(false)
-	}, [submit, formData])
+	}, [submit, formData, ENDPOINT, errors])
 
-	return { handleSubmit, handleChange, submitResponse, errors }
+	return [handleSubmit, handleChange, submitResponse, errors]
 }

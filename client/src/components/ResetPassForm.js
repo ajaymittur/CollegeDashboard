@@ -17,7 +17,7 @@ function validate(data) {
 }
 
 function ResetPassForm(props) {
-	const { handleSubmit, handleChange, submitResponse, errors } = useForm(ENDPOINT, validate)
+	const [handleSubmit, handleChange, submitResponse, errors] = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Reset"
 
 	if (submitResponse === true) props.history.push("/")
