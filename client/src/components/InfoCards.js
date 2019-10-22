@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Card, Image, Container, Dimmer, Loader, Segment } from "semantic-ui-react"
+import { Card, Dimmer, Loader } from "semantic-ui-react"
 import { VictoryPie } from "victory"
 import Cards from "./Cards/Cards"
 import axios from "axios"
@@ -34,40 +34,38 @@ function InfoCards() {
 	else
 		return (
 			<div>
-				<Container fluid>
-					<Card centered>
-						<Image
-							src='https://react.semantic-ui.com/images/avatar/large/matthew.png'
-							wrapped
-							ui={false}
-						/>
-						<Card.Content>
-							<Card.Header>{`${fullname}`}</Card.Header>
-							<Card.Meta>
-								<span>Student</span>
-							</Card.Meta>
-							<Card.Meta>
-								<span>Email: {email}</span>
-							</Card.Meta>
-							<Card.Description>{`${fullname} is a student with ${CGPA} CGPA.`}</Card.Description>
-						</Card.Content>
-					</Card>
-					<Card.Group centered itemsPerRow={4}>
-						{subjects.map((sub, i) => {
-							return (
-								<Cards
-									key={i}
-									name={fullname}
-									subject={subjects[i]}
-									attendance={attendance[sub]}
-									marks={marks[sub]}
-									credits={credits[sub]}
-								/>
-							)
-						})}
-					</Card.Group>
-					<VictoryPie data={studentData} colorScale='qualitative' height={200} />
-				</Container>
+				<Card centered>
+					<Image
+						src='https://react.semantic-ui.com/images/avatar/large/matthew.png'
+						wrapped
+						ui={false}
+					/>
+					<Card.Content>
+						<Card.Header>{`${fullname}`}</Card.Header>
+						<Card.Meta>
+							<span>Student</span>
+						</Card.Meta>
+						<Card.Meta>
+							<span>Email: {email}</span>
+						</Card.Meta>
+						<Card.Description>{`${fullname} is a student with ${CGPA} CGPA.`}</Card.Description>
+					</Card.Content>
+				</Card>
+				<Card.Group centered itemsPerRow={4}>
+					{subjects.map((sub, i) => {
+						return (
+							<Cards
+								key={i}
+								name={fullname}
+								subject={subjects[i]}
+								attendance={attendance[sub]}
+								marks={marks[sub]}
+								credits={credits[sub]}
+							/>
+						)
+					})}
+				</Card.Group>
+				<VictoryPie data={studentData} colorScale='qualitative' height={200} />
 			</div>
 		)
 }
