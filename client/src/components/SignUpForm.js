@@ -20,7 +20,7 @@ function validate(data) {
 }
 
 function SignUpForm(props) {
-	const { handleSubmit, handleChange, submitResponse, errors } = useForm(ENDPOINT, validate)
+	const [handleSubmit, handleChange, submitResponse, errors] = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Sign Up"
 
 	if (submitResponse === true) props.history.push("/student/details")

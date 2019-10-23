@@ -20,7 +20,7 @@ function validate(data) {
 }
 
 function ResetPassForm() {
-	const { handleSubmit, handleChange, errors } = useForm(ENDPOINT, validate)
+	const [handleSubmit, handleChange, errors] = useForm(ENDPOINT, validate)
 	document.title = "CollegeDashboard | Reset"
 
 	return (
