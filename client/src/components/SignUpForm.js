@@ -61,7 +61,7 @@ function SignUpForm(props) {
 			})
 		}
 	}
-
+  
 	if (submitResponse === true) props.history.push("/student/dashboard")
 
 	return (
