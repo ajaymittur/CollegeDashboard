@@ -20,7 +20,7 @@ function App() {
 				<Route path='/signup'>
 					<SignUpForm />
 				</Route>
-				<Route path='/jason'>
+				<Route path='/student/dashboard'>
 					{/*<Navbar />*/}
 					<InfoCards />
 				</Route>
