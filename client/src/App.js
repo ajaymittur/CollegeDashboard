@@ -5,7 +5,6 @@ import LoginForm from "./components/LoginForm"
 import ResetPassForm from "./components/ResetPassForm"
 import SignUpForm from "./components/SignUpForm"
 import NotFound from "./components/NotFound"
-import NavBar from "./components/NavBar"
 import InfoCards from "./components/InfoCards"
 
 function App() {
@@ -22,7 +21,7 @@ function App() {
 					<SignUpForm />
 				</Route>
 				<Route path='/student/dashboard'>
-					<Navbar />
+					{/*<Navbar />*/}
 					<InfoCards />
 				</Route>
 				<Route>
