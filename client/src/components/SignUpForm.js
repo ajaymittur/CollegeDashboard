@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, withRouter } from "react-router-dom"
 import useForm from "../customHooks/useForm"
@@ -16,13 +16,52 @@ function validate(data) {
 	if (!data.email || !data.password || !data.repassword || !data.name || !data.usn)
 		errors.allFilled = "Make sure you fill in all the fields"
 
+	for (let key in data)
+		if (isNaN(Number(data[key].startsWith("credits")))) errors.crednan = "Credits should be numbers"
+
+	if (notComplete(data, Number(data.numsubjects)))
+		errors.allFilled = "Make sure you fill in all subject fields"
+
 	return errors
 }
 
+function notComplete(obj, subCount) {
+	for (let i = 0; i < subCount; i++) {
+		if (!obj.hasOwnProperty(`subject${i + 1}`) || !obj.hasOwnProperty(`credits${i + 1}`))
+			return true
+	}
+	return false
+}
+
 function SignUpForm(props) {
-	const [handleSubmit, handleChange, submitResponse, errors] = useForm(ENDPOINT, validate)
+	const [
+		handleSubmit,
+		handleChange,
+		formData,
+		setFormData,
+		submitResponse,
+		errors,
+		setErrors
+	] = useForm(ENDPOINT, validate)
+	const [subCount, setSubCount] = useState(0)
 	document.title = "CollegeDashboard | Sign Up"
 
+	const handleChangeNumSubjects = e => {
+		if (e.target.name === "numsubjects" && isNaN(e.target.value)) {
+			setSubCount(0)
+			setErrors({
+				...errors,
+				numsubjects: "Number of subjects should be a number"
+			})
+		} else {
+			setSubCount(Number(e.target.value))
+			setFormData({
+				...formData,
+				[e.target.name]: e.target.value
+			})
+		}
+	}
+  
 	if (submitResponse === true) props.history.push("/student/dashboard")
 
 	return (
@@ -73,6 +112,28 @@ function SignUpForm(props) {
 							name='repassword'
 							type='password'
 						/>
+						<Form.Input
+							label='Number of subjects'
+							name='numsubjects'
+							onChange={handleChangeNumSubjects}
+							type='input'
+						/>
+						{[...Array(subCount)].map((e, i) => (
+							<Form.Group widths='equal' key={i}>
+								<Form.Input
+									fluid
+									name={`subject${i + 1}`}
+									label={`Subject ${i + 1}`}
+									onChange={handleChange}
+								/>
+								<Form.Input
+									fluid
+									name={`credits${i + 1}`}
+									label={`Credits for subject ${i + 1}`}
+									onChange={handleChange}
+								/>
+							</Form.Group>
+						))}
 						<Button type='submit'>Sign Up</Button>
 						{Object.entries(errors).length > 0 && (
 							<Message
