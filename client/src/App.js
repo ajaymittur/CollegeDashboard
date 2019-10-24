@@ -22,7 +22,7 @@ function App() {
 					<SignUpForm />
 				</Route>
 				<Route path='/student/dashboard'>
-					<Navbar />
+					<NavBar />
 					<InfoCards />
 				</Route>
 				<Route>
