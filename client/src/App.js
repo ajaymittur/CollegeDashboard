@@ -5,7 +5,7 @@ import LoginForm from "./components/LoginForm"
 import ResetPassForm from "./components/ResetPassForm"
 import SignUpForm from "./components/SignUpForm"
 import NotFound from "./components/NotFound"
-import NavBar from "./components/NavBar"
+import Navbar from "./components/NavBar"
 import InfoCards from "./components/InfoCards"
 
 function App() {

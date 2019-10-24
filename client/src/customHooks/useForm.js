@@ -41,5 +41,13 @@ export default function useForm(ENDPOINT, validationFn) {
 		setSubmit(false)
 	}, [submit, formData, ENDPOINT, errors])
 
-	return [handleSubmit, handleChange, formData, setFormData, submitResponse, errors, setErrors]
+	return [
+		handleSubmit,
+		handleChange,
+		formData,
+		setFormData,
+		submitResponse,
+		errors,
+		setErrors
+	]
 }

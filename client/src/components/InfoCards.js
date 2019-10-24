@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Card, Dimmer, Loader } from "semantic-ui-react"
+import { Card, Dimmer, Loader, Image } from "semantic-ui-react"
 import { VictoryPie } from "victory"
 import Cards from "./Cards/Cards"
 import axios from "axios"
@@ -18,7 +18,6 @@ function InfoCards() {
 		}
 
 		fetchData()
-		console.log(studentData)
 	}, [fetchedData])
 
 	const { fullname, email, CGPA, subjects, attendance, marks, credits, USN } = studentData
