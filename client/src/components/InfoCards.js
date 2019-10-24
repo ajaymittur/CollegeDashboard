@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Card, Dimmer, Loader } from "semantic-ui-react"
+import { Card, Dimmer, Loader, Header } from "semantic-ui-react"
 import { VictoryPie } from "victory"
 import Cards from "./Cards/Cards"
 import axios from "axios"
@@ -22,8 +22,15 @@ function InfoCards() {
 	}, [fetchedData])
 
 	const { fullname, email, CGPA, subjects, attendance, marks, credits, USN } = studentData
+	let chartData = []
+	let i = 0
+	for (let mark in marks) {
+		chartData.push({ x: Object.keys(marks)[i], y: mark })
+		++i
+	}
+	console.log(chartData)
 
-	if (fetchedData == false)
+	if (fetchedData === false)
 		return (
 			<div>
 				<Dimmer active>
@@ -34,7 +41,7 @@ function InfoCards() {
 	else
 		return (
 			<div>
-				<Card centered>
+				{/*<Card centered>
 					<Image
 						src='https://react.semantic-ui.com/images/avatar/large/matthew.png'
 						wrapped
@@ -53,7 +60,7 @@ function InfoCards() {
 						</Card.Meta>
 						<Card.Description>{`${fullname} is a student with ${CGPA} CGPA.`}</Card.Description>
 					</Card.Content>
-				</Card>
+				</Card>*/}
 				<Card.Group centered itemsPerRow={4}>
 					{subjects.map((sub, i) => {
 						return (
@@ -68,7 +75,10 @@ function InfoCards() {
 						)
 					})}
 				</Card.Group>
-				<VictoryPie data={studentData} colorScale='qualitative' height={200} />
+				<Header size='huge' textAlign='center' color='orange' style={{marginTop: '5%', fontSize: '400%'}}>
+					Marks
+				</Header>
+				<VictoryPie data={chartData} colorScale='qualitative' height={200} />
 			</div>
 		)
 }
