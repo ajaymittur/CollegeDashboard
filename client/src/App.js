@@ -6,7 +6,7 @@ import ResetPassForm from "./components/ResetPassForm"
 import SignUpForm from "./components/SignUpForm"
 import NotFound from "./components/NotFound"
 import NavBar from "./components/NavBar"
-import DataForm from "./components/DataForm"
+import DataForm from "./components/dataForm"
 
 function App() {
 	return (
