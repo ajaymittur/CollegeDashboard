@@ -15,7 +15,7 @@ function Cards (props) {
 
 	return (
 		<div>
-  			<Card className='grow' raised>
+  			<Card className='grow' color='orange' raised style={{marginTop:'20%', maxWidth: '95%'}}>
 				<VictoryChart 
 					domainPadding={100} 
 					domain={{y: [0, 60]}}>
