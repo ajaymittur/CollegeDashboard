@@ -1,36 +1,66 @@
-import React from "react"
-import "./App.css"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import LoginForm from "./components/LoginForm"
-import ResetPassForm from "./components/ResetPassForm"
-import SignUpForm from "./components/SignUpForm"
-import NotFound from "./components/NotFound"
-import Navbar from "./components/NavBar"
-import InfoCards from "./components/InfoCards"
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LoginForm from "./components/LoginForm";
+import ResetPassForm from "./components/ResetPassForm";
+import SignUpForm from "./components/SignUpForm";
+import NotFound from "./components/NotFound";
+import Navbar from "./components/NavBar";
+import InfoCards from "./components/InfoCards";
+import Particles from "react-particles-js";
+
+const particleParams = {
+	particles: {
+		number: {
+			value: 160,
+			density: {
+				enable: false,
+				value_area: 800
+			}
+		},
+		color: {
+			value: ["#FFA500"]
+		},
+		line_linked: {
+			color: "#FFA500",
+			opacity: 1
+		}
+	}
+};
 
 function App() {
 	return (
 		<Router>
-			<Switch>
-				<Route path='/' exact>
-					<LoginForm />
-				</Route>
-				<Route path='/reset'>
-					<ResetPassForm />
-				</Route>
-				<Route path='/signup'>
-					<SignUpForm />
-				</Route>
-				<Route path='/student/dashboard'>
-					<Navbar />
-					<InfoCards />
-				</Route>
-				<Route>
-					<NotFound />
-				</Route>
-			</Switch>
+			<Particles params={particleParams} height='100vh' />
+			<div
+				style={{
+					position: "absolute",
+					top: 0,
+					left: 0,
+					width: "100%",
+					height: "100%"
+				}}>
+				<Switch>
+					<Route path='/' exact>
+						<LoginForm />
+					</Route>
+					<Route path='/reset'>
+						<ResetPassForm />
+					</Route>
+					<Route path='/signup'>
+						<SignUpForm />
+					</Route>
+					<Route path='/student/dashboard'>
+						<Navbar />
+						<InfoCards />
+					</Route>
+					<Route>
+						<NotFound />
+					</Route>
+				</Switch>
+			</div>
 		</Router>
-	)
+	);
 }
 
-export default App
+export default App;
