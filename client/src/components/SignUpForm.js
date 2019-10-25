@@ -1,7 +1,9 @@
+import "./styles/forms.css"
 import React, { useState } from "react"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, withRouter } from "react-router-dom"
 import useForm from "../customHooks/useForm"
+
 
 const ENDPOINT = "http://localhost:4000/account/signup"
 
@@ -67,7 +69,7 @@ function SignUpForm(props) {
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 			<Grid.Column style={{ maxWidth: 450 }}>
-				<Header as='h2' textAlign='center' color='orange'>
+				<Header as='h2' textAlign='center' color='orange' className='headers-effect'>
 					Create your account
 				</Header>
 				<Form error size='large' onSubmit={handleSubmit}>

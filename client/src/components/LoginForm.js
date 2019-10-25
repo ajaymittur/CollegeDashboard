@@ -1,6 +1,7 @@
 // TODO: Implement wrong username/password error message
 
 import React from "react"
+import "./styles/forms.css"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, withRouter } from "react-router-dom"
 import useForm from "../customHooks/useForm"
@@ -27,7 +28,7 @@ function LoginForm(props) {
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 			<Grid.Column style={{ maxWidth: 450 }}>
-				<Header as='h2' color='orange' textAlign='center'>
+				<Header as='h2' color='orange' textAlign='center' className='headers-effect'>
 					Hello, there. Login to your account
 				</Header>
 				<Form error size='large' onSubmit={handleSubmit}>
