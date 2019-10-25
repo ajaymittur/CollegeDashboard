@@ -14,9 +14,8 @@ A web application that connects students and teachers. Encourages open communica
 _**Subject to change**_
 
  - `client` - React frontend code
- - `client/assets` - Images, icons, etc.
- - `client/components` - React components
- - `client/styles` - Custom CSS styles
- - `client/customHooks` - Custom React Hooks
+ - `client/src/assets` - Images, icons, etc.
+ - `client/src/components` - React components and their styles
+ - `client/src/customHooks` - Custom React Hooks
  - `server` - Backend server/database code
  - `server/firebase` - Code that interacts with firebase services (authentication & database)

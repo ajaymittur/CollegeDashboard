@@ -5,8 +5,8 @@ import LoginForm from "./components/LoginForm"
 import ResetPassForm from "./components/ResetPassForm"
 import SignUpForm from "./components/SignUpForm"
 import NotFound from "./components/NotFound"
-import NavBar from "./components/NavBar"
-import DataForm from "./components/dataForm"
+import Navbar from "./components/NavBar"
+import InfoCards from "./components/InfoCards"
 
 function App() {
 	return (
@@ -21,11 +21,9 @@ function App() {
 				<Route path='/signup'>
 					<SignUpForm />
 				</Route>
-				<Route path='/navbar'>
-					<NavBar />
-				</Route>
-				<Route path='/dataform'>
-					<DataForm />
+				<Route path='/student/dashboard'>
+					<Navbar />
+					<InfoCards />
 				</Route>
 				<Route>
 					<NotFound />
