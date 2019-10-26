@@ -1,29 +1,29 @@
 // TODO: Implement wrong username/password error message
 
-import React from "react"
-import "./styles/forms.css"
-import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
-import { Link, withRouter } from "react-router-dom"
-import useForm from "../customHooks/useForm"
+import React from "react";
+import "./styles/forms.css";
+import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react";
+import { Link, withRouter } from "react-router-dom";
+import useForm from "../customHooks/useForm";
 
-const ENDPOINT = "http://localhost:4000/account/login"
+const ENDPOINT = "http://localhost:4000/account/login";
 
 function validate(data) {
-	let errors = {}
+	let errors = {};
 
 	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email))
-		errors.correctEmail = "Enter a valid email address"
+		errors.correctEmail = "Enter a valid email address";
 
-	if (!data.email || !data.password) errors.allFilled = "Make sure you fill in all the fields"
+	if (!data.email || !data.password) errors.allFilled = "Make sure you fill in all the fields";
 
-	return errors
+	return errors;
 }
 
 function LoginForm(props) {
-	const [handleSubmit, handleChange, , , submitResponse, errors] = useForm(ENDPOINT, validate)
-	document.title = "CollegeDashboard | Login"
+	const [handleSubmit, handleChange, , , submitResponse, errors] = useForm(ENDPOINT, validate);
+	document.title = "CollegeDashboard | Login";
 
-	if (submitResponse === true) props.history.push("/student/dashboard")
+	if (submitResponse === true) props.history.push("/student/dashboard/home");
 
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
@@ -70,7 +70,7 @@ function LoginForm(props) {
 				</Form>
 			</Grid.Column>
 		</Grid>
-	)
+	);
 }
 
-export default withRouter(LoginForm)
+export default withRouter(LoginForm);

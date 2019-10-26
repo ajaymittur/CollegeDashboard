@@ -1,42 +1,40 @@
-import React, { useState, useEffect } from "react"
-import { Card, Dimmer, Loader, Header } from "semantic-ui-react"
-import { VictoryPie } from "victory"
-import Cards from "./Cards/Cards"
-import axios from "axios"
-
-// TODO: 1) All formatting/Styling/Height/Width/Line Breaking will be done later.
+import React, { useState, useEffect } from "react";
+import { Card, Dimmer, Loader, Header } from "semantic-ui-react";
+import { VictoryPie } from "victory";
+import Cards from "./Cards/Cards";
+import Navbar from "./Navbar";
+import axios from "axios";
 
 function InfoCards() {
-	const [studentData, setStudentData] = useState({})
-	const [fetchedData, setFetchedData] = useState(false)
+	const [studentData, setStudentData] = useState({});
+	const [didFetchData, setDidFetchData] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const res = await axios.get("http://localhost:4000/student/getData")
-			setStudentData(res.data.userData)
-			setFetchedData(true)
-		}
+			const res = await axios.get("http://localhost:4000/student/getData");
+			setStudentData(res.data.userData);
+			setDidFetchData(true);
+		};
 
-		fetchData()
-	}, [fetchedData])
+		fetchData();
+	}, [didFetchData]);
 
-	const { fullname, email, CGPA, subjects, attendance, marks, credits, USN } = studentData
-	let chartData = []
-	let i = 0
+	const { fullname, email, CGPA, subjects, attendance, marks, credits, USN } = studentData;
+	let chartData = [];
+	let i = 0;
 	for (let mark in marks) {
-		chartData.push({ x: Object.keys(marks)[i], y: mark })
-		++i
+		chartData.push({ x: Object.keys(marks)[i], y: mark });
+		++i;
 	}
-	console.log(chartData)
 
-	if (fetchedData === false)
+	if (didFetchData === false)
 		return (
 			<div>
 				<Dimmer active>
 					<Loader size='large'>Loading Data</Loader>
 				</Dimmer>
 			</div>
-		)
+		);
 	else
 		return (
 			<div>
@@ -60,6 +58,9 @@ function InfoCards() {
 						<Card.Description>{`${fullname} is a student with ${CGPA} CGPA.`}</Card.Description>
 					</Card.Content>
 				</Card>*/}
+
+				<Navbar name={fullname} />
+
 				<Card.Group centered itemsPerRow={4}>
 					{subjects.map((sub, i) => {
 						return (
@@ -71,7 +72,7 @@ function InfoCards() {
 								marks={marks[sub]}
 								credits={credits[sub]}
 							/>
-						)
+						);
 					})}
 				</Card.Group>
 				<Header
@@ -83,7 +84,7 @@ function InfoCards() {
 				</Header>
 				<VictoryPie data={chartData} colorScale='qualitative' height={200} />
 			</div>
-		)
+		);
 }
 
-export default InfoCards
+export default InfoCards;
