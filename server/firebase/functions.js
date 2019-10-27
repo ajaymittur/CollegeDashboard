@@ -1,4 +1,5 @@
-const firebase = require("firebase")
+const firebase = require("firebase");
+const processData = require("./utils");
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDyqfxEVA6uXKgaVM326-VwMvvwYeqvvMQ",
@@ -9,25 +10,25 @@ const firebaseConfig = {
 	messagingSenderId: "1010034751049",
 	appId: "1:1010034751049:web:a4e4a3cebb5197ba5fb198",
 	measurementId: "G-L3LSHQBQ2Q"
-}
+};
 
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 
-const fireDB = firebase.firestore()
-const fireAuth = firebase.auth()
+const fireDB = firebase.firestore();
+const fireAuth = firebase.auth();
 
 const actionCodeSettings = {
 	url: "http://localhost:3000" // redirect url
-}
+};
 
 async function signup(accountDetails) {
-	const { email, usn, name, password } = accountDetails
+	const { email, usn, name, password } = accountDetails;
 
 	try {
-		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password)
+		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password);
 		userRecord.user.updateProfile({
 			displayName: name
-		})
+		});
 
 		fireDB
 			.collection("accounts")
@@ -39,56 +40,77 @@ async function signup(accountDetails) {
 				name,
 				usn,
 				userId: userRecord.user.uid
-			})
+			});
 
-		return { isSuccess: true, message: `Successfully created new user: ${userRecord.user.uid}` }
+		let processedUserData = processData(accountDetails);
+
+		fireDB
+			.collection("students")
+			.doc(usn)
+			.set({
+				...processedUserData
+			});
+
+		return { isSuccess: true, message: `Successfully created new user: ${userRecord.user.uid}` };
 	} catch (error) {
-		return { isSuccess: false, message: error.message }
+		return { isSuccess: false, message: error.message };
 	}
 }
 
 async function login(accountDetails) {
-	const { email, password } = accountDetails
+	const { email, password } = accountDetails;
 
 	try {
-		let userRecord = await fireAuth.signInWithEmailAndPassword(email, password)
-		return { isSuccess: true, message: `Successfully logged in user: ${userRecord.user.uid}` }
+		let userRecord = await fireAuth.signInWithEmailAndPassword(email, password);
+		return { isSuccess: true, message: `Successfully logged in user: ${userRecord.user.uid}` };
 	} catch (error) {
-		return { isSuccess: false, message: error.message }
+		return { isSuccess: false, message: error.message };
 	}
 }
 
 async function resetPass(email) {
 	try {
-		await fireAuth.sendPasswordResetEmail(email, actionCodeSettings)
-		return { isSuccess: true, message: `Password Reset mail has been sent to ${email}` }
+		await fireAuth.sendPasswordResetEmail(email, actionCodeSettings);
+		return { isSuccess: true, message: `Password Reset mail has been sent to ${email}` };
 	} catch (error) {
-		return { isSuccess: false, message: "Couldn't find the provided email address in our records." }
+		return {
+			isSuccess: false,
+			message: "Couldn't find the provided email address in our records."
+		};
 	}
 }
 
 async function getCurrentUser() {
-	let user = fireAuth.currentUser
-	let response = {}
+	let user = fireAuth.currentUser;
+	let response = {};
 	if (user) {
 		let docSnapshot = await fireDB
 			.collection("student")
 			.where("email", "==", user.email)
-			.get()
+			.get();
 		docSnapshot.forEach(doc => {
 			if (doc.exists) {
 				response = {
 					isSuccess: true,
 					userData: doc.data(),
 					message: "User data retrieved"
-				}
+				};
 			} else {
-				response = { isSuccess: false, message: "User Data not found" }
+				response = { isSuccess: false, message: "User Data not found" };
 			}
-		})
-		return response
+		});
+		return response;
 	} else {
-		return { isSuccess: false, message: "User Not Logged In" }
+		return { isSuccess: false, message: "User Not Logged In" };
+	}
+}
+
+async function logout() {
+	try {
+		await fireAuth.signOut();
+		return { isSuccess: true, message: "User logged out successfully" };
+	} catch (error) {
+		return { isSuccess: false, message: "Error occurred while logging user out" };
 	}
 }
 
@@ -96,5 +118,6 @@ module.exports = {
 	signup,
 	login,
 	resetPass,
-	getCurrentUser
-}
+	getCurrentUser,
+	logout
+};

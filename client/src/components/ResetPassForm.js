@@ -1,6 +1,7 @@
 // TODO: fix correctEmail and allFilled value updating in next submit issue
 
 import React from "react"
+import "./styles/forms.css"
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, withRouter } from "react-router-dom"
 import useForm from "../customHooks/useForm"
@@ -25,7 +26,7 @@ function ResetPassForm(props) {
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 			<Grid.Column textAlign='center' style={{ maxWidth: 450 }}>
-				<Header as='h2' color='orange' textAlign='center'>
+				<Header as='h2' color='orange' textAlign='center' className='headers-effect'>
 					Reset Password
 				</Header>
 				<Form error size='large' onSubmit={handleSubmit}>
