@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Menu, Image, Dropdown } from "semantic-ui-react";
+import React from "react";
+import { Menu, Dropdown } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 
 function Navbar(props) {
-	const [activeItem, setActiveItem] = useState("home");
-	// const [loggedOut, setLoggedOut] = useState(false)
+	const { activeItem, setActiveItem } = props;
 
 	const handleItemClick = (e, { name }) => {
 		setActiveItem(name);
-		props.history.push("/student/dashboard/" + name.toLowerCase());
 	};
 
 	const logoutUser = async () => {
@@ -52,7 +50,7 @@ function Navbar(props) {
 							/>
 						</center>
 						<Dropdown.Divider />
-						<Dropdown.Item icon='user' text='Account' />
+						<Dropdown.Item icon='user' text='Account' onClick={() => setActiveItem("Account")} />
 						<Dropdown.Item icon='hand peace' text='Logout' onClick={logoutUser} />
 					</Dropdown.Menu>
 				</Dropdown>

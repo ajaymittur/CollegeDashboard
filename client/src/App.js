@@ -5,7 +5,7 @@ import LoginForm from "./components/LoginForm";
 import ResetPassForm from "./components/ResetPassForm";
 import SignUpForm from "./components/SignUpForm";
 import NotFound from "./components/NotFound";
-import InfoCards from "./components/InfoCards";
+import Dashboard from "./components/Dashboard";
 import Particles from "react-particles-js";
 
 const particleParams = {
@@ -50,7 +50,7 @@ function App() {
 						<SignUpForm />
 					</Route>
 					<Route path='/student/dashboard'>
-						<InfoCards />
+						<Dashboard />
 					</Route>
 					<Route>
 						<NotFound />
