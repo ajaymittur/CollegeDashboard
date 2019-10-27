@@ -1,5 +1,3 @@
-// TODO: fix correctEmail and allFilled value updating in next submit issue
-
 import React from "react";
 import "./styles/forms.css";
 import {
