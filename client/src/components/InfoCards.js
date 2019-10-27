@@ -2,54 +2,43 @@ import React, { useState, useEffect } from "react";
 import { Card, Dimmer, Loader, Header } from "semantic-ui-react";
 import { VictoryPie } from "victory";
 import Cards from "./Cards/Cards";
+import Navbar from "./Navbar";
 import axios from "axios";
 
-// TODO: 1) All formatting/Styling/Height/Width/Line Breaking will be done later.
-
 function InfoCards() {
-  const [studentData, setStudentData] = useState({});
-  const [fetchedData, setFetchedData] = useState(false);
+	const [studentData, setStudentData] = useState({});
+	const [didFetchData, setDidFetchData] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get("http://localhost:4000/student/getData");
-      setStudentData(res.data.userData);
-      setFetchedData(true);
-    };
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await axios.get("http://localhost:4000/student/getData");
+			setStudentData(res.data.userData);
+			setDidFetchData(true);
+		};
 
-    fetchData();
-  }, [fetchedData]);
+		fetchData();
+	}, [didFetchData]);
 
-  const {
-    fullname,
-    email,
-    CGPA,
-    subjects,
-    attendance,
-    marks,
-    credits,
-    USN
-  } = studentData;
-  let chartData = [];
-  let i = 0;
-  for (let mark in marks) {
-    chartData.push({ x: Object.keys(marks)[i], y: mark });
-    ++i;
-  }
-  console.log(chartData);
+	const { fullname, email, CGPA, subjects, attendance, marks, credits, USN } = studentData;
+	let chartData = [];
+	let i = 0;
+	for (let mark in marks) {
+		chartData.push({ x: Object.keys(marks)[i], y: mark });
+		++i;
+	}
 
-  if (fetchedData === false)
-    return (
-      <div>
-        <Dimmer active>
-          <Loader size="large">Loading Data</Loader>
-        </Dimmer>
-      </div>
-    );
-  else
-    return (
-      <div>
-        {/*<Card centered>
+	if (didFetchData === false)
+		return (
+			<div>
+				<Dimmer active>
+					<Loader size='large'>Loading Data</Loader>
+				</Dimmer>
+			</div>
+		);
+	else
+		return (
+			<div>
+				{/*<Card centered>
 					<Image
 						src='https://react.semantic-ui.com/images/avatar/large/matthew.png'
 						wrapped
@@ -69,31 +58,33 @@ function InfoCards() {
 						<Card.Description>{`${fullname} is a student with ${CGPA} CGPA.`}</Card.Description>
 					</Card.Content>
 				</Card>*/}
-        <Card.Group centered itemsPerRow={3}>
-          {subjects.map((sub, i) => {
-            return (
-              <Cards
-                key={i}
-                name={fullname}
-                subject={subjects[i]}
-                attendance={attendance[sub]}
-                marks={marks[sub]}
-                credits={credits[sub]}
-              />
-            );
-          })}
-        </Card.Group>
-        <Header
-          size="huge"
-          textAlign="center"
-          color="orange"
-          style={{ marginTop: "5%", fontSize: "400%" }}
-        >
-          Marks
-        </Header>
-        <VictoryPie data={chartData} colorScale="qualitative" height={200} />
-      </div>
-    );
+
+				<Navbar name={fullname} />
+
+				<Card.Group centered itemsPerRow={4}>
+					{subjects.map((sub, i) => {
+						return (
+							<Cards
+								key={i}
+								name={fullname}
+								subject={subjects[i]}
+								attendance={attendance[sub]}
+								marks={marks[sub]}
+								credits={credits[sub]}
+							/>
+						);
+					})}
+				</Card.Group>
+				<Header
+					size='huge'
+					textAlign='center'
+					color='orange'
+					style={{ marginTop: "5%", fontSize: "400%" }}>
+					Marks
+				</Header>
+				<VictoryPie data={chartData} colorScale='qualitative' height={200} />
+			</div>
+		);
 }
 
 export default InfoCards;

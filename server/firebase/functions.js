@@ -105,9 +105,19 @@ async function getCurrentUser() {
 	}
 }
 
+async function logout() {
+	try {
+		await fireAuth.signOut();
+		return { isSuccess: true, message: "User logged out successfully" };
+	} catch (error) {
+		return { isSuccess: false, message: "Error occurred while logging user out" };
+	}
+}
+
 module.exports = {
 	signup,
 	login,
 	resetPass,
-	getCurrentUser
+	getCurrentUser,
+	logout
 };

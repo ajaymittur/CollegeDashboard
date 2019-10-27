@@ -5,7 +5,6 @@ import LoginForm from "./components/LoginForm";
 import ResetPassForm from "./components/ResetPassForm";
 import SignUpForm from "./components/SignUpForm";
 import NotFound from "./components/NotFound";
-import Navbar from "./components/NavBar";
 import InfoCards from "./components/InfoCards";
 import Particles from "react-particles-js";
 
@@ -51,7 +50,6 @@ function App() {
 						<SignUpForm />
 					</Route>
 					<Route path='/student/dashboard'>
-						<Navbar />
 						<InfoCards />
 					</Route>
 					<Route>
