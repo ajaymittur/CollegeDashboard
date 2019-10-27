@@ -51,7 +51,7 @@ function Navbar(props) {
 						</center>
 						<Dropdown.Divider />
 						<Dropdown.Item icon='user' text='Account' onClick={() => setActiveItem("Account")} />
-						<Dropdown.Item icon='hand peace' text='Logout' onClick={logoutUser} />
+						<Dropdown.Item icon='log out' text='Logout' onClick={logoutUser} />
 					</Dropdown.Menu>
 				</Dropdown>
 			</Menu.Menu>

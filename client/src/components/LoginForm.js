@@ -23,16 +23,16 @@ function LoginForm(props) {
 	const [handleSubmit, handleChange, , , submitResponse, errors] = useForm(ENDPOINT, validate);
 	document.title = "CollegeDashboard | Login";
 
-	if (submitResponse === true) props.history.push("/student/dashboard/home");
+	if (submitResponse === true) props.history.push("/student/dashboard");
 
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 			<Grid.Column style={{ maxWidth: 450 }}>
-				<Header as='h2' color='orange' textAlign='center' className='headers-effect'>
+				<Header as='h2' color='orange' textAlign='center' className='zoomIn'>
 					Hello, there. Login to your account
 				</Header>
 				<Form error size='large' onSubmit={handleSubmit}>
-					<Segment raised inverted color='orange' secondary>
+					<Segment raised inverted color='orange' secondary className='zoomIn'>
 						<Form.Input
 							fluid
 							onChange={handleChange}
@@ -41,6 +41,7 @@ function LoginForm(props) {
 							placeholder='Email'
 							name='email'
 							type='input'
+							className='zoomIn'
 						/>
 						<Form.Input
 							fluid
@@ -50,9 +51,10 @@ function LoginForm(props) {
 							placeholder='Password'
 							name='password'
 							type='password'
+							className='zoomIn'
 						/>
-						<Button type='submit'>Login</Button>
-						<Button inverted as={Link} to='/signup'>
+						<Button type='submit' className='zoomIn'>Login</Button>
+						<Button inverted as={Link} to='/signup' className='zoomIn'>
 							Sign Up
 						</Button>
 					</Segment>
@@ -64,8 +66,8 @@ function LoginForm(props) {
 							size='small'
 						/>
 					)}
-					<Message>
-						Forgot your password? <Link to='/reset'>Reset</Link>
+					<Message className='zoomIn'>
+						Forgot your password? <Link to='/reset' className='zoomIn'>Reset</Link>
 					</Message>
 				</Form>
 			</Grid.Column>
