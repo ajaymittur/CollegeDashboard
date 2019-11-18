@@ -4,7 +4,7 @@
 	"description": "A web application that connects students and teachers. Encourages open communication between the faculty and users.",
 	"main": "server/index.js",
 	"scripts": {
-		"start": "node index.js"
+		"start": "node server/index.js"
 	},
 	"repository": {
 		"type": "git",
