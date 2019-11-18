@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import "./styles/forms.css";
 import React, { useState } from "react";
 import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react";

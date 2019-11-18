@@ -18,7 +18,7 @@ const fireDB = firebase.firestore();
 const fireAuth = firebase.auth();
 
 const actionCodeSettings = {
-	url: "http://localhost:3000" // redirect url
+	url: "https://collegedashboard.netlify.com" // redirect url
 };
 
 async function signup(accountDetails) {
