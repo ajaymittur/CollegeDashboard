@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
@@ -28,12 +28,6 @@ const particleParams = {
 };
 
 function App() {
-	// const [windowHeight, setWindowHeight] = useState(document.body.scrollHeight);
-
-	// window.addEventListener("resize", () => {
-	// 	setWindowHeight(document.body.scrollHeight);
-	// });
-
 	return (
 		<Router>
 			<Particles params={particleParams} height={document.body.scrollHeight} />

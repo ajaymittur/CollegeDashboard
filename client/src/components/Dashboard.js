@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimmer, Loader } from "semantic-ui-react";
+import { Dimmer } from "semantic-ui-react";
 import Particles from "react-particles-js";
 import Navbar from "./Navbar";
 import Overview from "./Overview";
@@ -82,7 +82,7 @@ function Dashboard() {
 		const fetchData = async () => {
 			try {
 				const res = await axios.get(
-					"https://college-dashboard-backend.herokuapp.com//student/getData"
+					"https://college-dashboard-backend.herokuapp.com/student/getData"
 				);
 				setStudentData(res.data.userData);
 				setIsLoggedIn(res.data.isSuccess);

@@ -31,3 +31,4 @@ client/debug.log
 
 # private api keys, etc
 server/database/college-dashboard-3rd-sem-firebase-adminsdk-8y4vn-e2f3ebd386.json
+node_modules
