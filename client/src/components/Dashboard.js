@@ -17,7 +17,7 @@ function Dashboard() {
     const fetchData = async () => {
       const res = await axios.get("http://localhost:4000/student/getData");
       setStudentData(res.data.userData);
-      //setDidFetchData(true);
+      setDidFetchData(true);
     };
 
     fetchData();
