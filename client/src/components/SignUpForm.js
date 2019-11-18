@@ -4,7 +4,7 @@ import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, withRouter } from "react-router-dom";
 import useForm from "../customHooks/useForm";
 
-const ENDPOINT = "http://localhost:4000/account/signup";
+const ENDPOINT = "https://college-dashboard-backend.herokuapp.com/account/signup";
 
 function validate(data) {
 	let errors = {};
@@ -92,7 +92,8 @@ function SignUpForm(props) {
 								secondary
 								size='large'
 								textAlign='left'
-								className='zoomIn'>
+								className='zoomIn'
+							>
 								<Form.Input
 									fluid
 									onChange={handleChange}
@@ -178,7 +179,8 @@ function SignUpForm(props) {
 								secondary
 								size='large'
 								textAlign='left'
-								className='zoomIn'>
+								className='zoomIn'
+							>
 								{[...Array(subCount)].map((e, i) => (
 									<Form.Group widths='equal' key={i}>
 										<Form.Input

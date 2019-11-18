@@ -81,7 +81,9 @@ function Dashboard() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const res = await axios.get("http://localhost:4000/student/getData");
+				const res = await axios.get(
+					"https://college-dashboard-backend.herokuapp.com//student/getData"
+				);
 				setStudentData(res.data.userData);
 				setIsLoggedIn(res.data.isSuccess);
 				setDidFetchData(true);
