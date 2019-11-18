@@ -4,7 +4,7 @@
 	"description": "server for react front-end of collegedashboard project",
 	"main": "index.js",
 	"scripts": {
-		"start": "node "
+		"start": "node index.js"
 	},
 	"repository": {
 		"type": "git",
