@@ -53,7 +53,9 @@ function LoginForm(props) {
 							type='password'
 							className='zoomIn'
 						/>
-						<Button type='submit' className='zoomIn'>Login</Button>
+						<Button type='submit' className='zoomIn'>
+							Login
+						</Button>
 						<Button inverted as={Link} to='/signup' className='zoomIn'>
 							Sign Up
 						</Button>
@@ -64,10 +66,14 @@ function LoginForm(props) {
 							header='Could Not Sign In'
 							content='Email / Password is incorrect'
 							size='small'
+							className='zoomIn'
 						/>
 					)}
 					<Message className='zoomIn'>
-						Forgot your password? <Link to='/reset' className='zoomIn'>Reset</Link>
+						Forgot your password?{" "}
+						<Link to='/reset' className='zoomIn'>
+							Reset
+						</Link>
 					</Message>
 				</Form>
 			</Grid.Column>
