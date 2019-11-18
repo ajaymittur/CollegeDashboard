@@ -1,0 +1,19 @@
+{
+	"name": "collegedashboard",
+	"version": "1.0.0",
+	"description": "A web application that connects students and teachers. Encourages open communication between the faculty and users.",
+	"main": "server/index.js",
+	"scripts": {
+		"start": "node server/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ajaymittur28/CollegeDashboard.git"
+	},
+	"author": "ajay mittur, akshay mittur, bhushith gagan",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ajaymittur28/CollegeDashboard/issues"
+	},
+	"homepage": "https://github.com/ajaymittur28/CollegeDashboard#readme"
+}
