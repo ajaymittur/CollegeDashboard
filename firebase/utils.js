@@ -5,7 +5,7 @@ function processData(accountData) {
 	const marks = marksJSON(accountData);
 	const attendance = attendanceJSON(accountData);
 	const subjects = subjectsArray(accountData);
-	const cgpa = marksToCGPA(creds, marks);
+	const cgpa = marksToCGPA(credits, marks);
 
 	return {
 		email,
