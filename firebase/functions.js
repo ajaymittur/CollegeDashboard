@@ -2,14 +2,22 @@ const firebase = require("firebase");
 const processData = require("./utils");
 
 const firebaseConfig = {
-	apiKey: "AIzaSyDyqfxEVA6uXKgaVM326-VwMvvwYeqvvMQ",
-	authDomain: "college-dashboard-3rd-sem.firebaseapp.com",
-	databaseURL: "https://college-dashboard-3rd-sem.firebaseio.com",
-	projectId: "college-dashboard-3rd-sem",
-	storageBucket: "college-dashboard-3rd-sem.appspot.com",
-	messagingSenderId: "1010034751049",
-	appId: "1:1010034751049:web:a4e4a3cebb5197ba5fb198",
-	measurementId: "G-L3LSHQBQ2Q"
+	// apiKey: "AIzaSyDyqfxEVA6uXKgaVM326-VwMvvwYeqvvMQ",
+	apiKey: process.env.apiKey,
+	// authDomain: "college-dashboard-3rd-sem.firebaseapp.com",
+	authDomain: process.env.authDomain,
+	// databaseURL: "https://college-dashboard-3rd-sem.firebaseio.com",
+	databaseURL: process.env.databaseURL,
+	// projectId: "college-dashboard-3rd-sem",
+	projectId: process.env.projectId,
+	// storageBucket: "college-dashboard-3rd-sem.appspot.com",
+	storageBucket: process.env.storageBucket,
+	// messagingSenderId: "1010034751049",
+	messagingSenderId: process.env.messagingSenderId,
+	// appId: "1:1010034751049:web:a4e4a3cebb5197ba5fb198",
+	appId: process.env.appId,
+	// measurementId: "G-L3LSHQBQ2Q"
+	measurementId: process.env.measurementId
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -45,7 +53,7 @@ async function signup(accountDetails) {
 		let processedUserData = processData(accountDetails);
 
 		fireDB
-			.collection("students")
+			.collection("student")
 			.doc(usn)
 			.set({
 				...processedUserData

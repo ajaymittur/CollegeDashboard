@@ -4,7 +4,8 @@ import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, withRouter } from "react-router-dom";
 import useForm from "../customHooks/useForm";
 
-const ENDPOINT = "https://college-dashboard-backend.herokuapp.com/account/reset";
+// const ENDPOINT = "https://college-dashboard-backend.herokuapp.com/account/reset";
+const ENDPOINT = "http://localhost:4000/account/reset";
 
 function validate(data) {
 	let errors = {};
@@ -24,12 +25,7 @@ function ResetPassForm(props) {
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 			<Grid.Column textAlign='center' style={{ maxWidth: 450 }}>
-				<Header
-					as='h2'
-					color='orange'
-					textAlign='center'
-					className='headers-effect'
-					className='zoomIn'>
+				<Header as='h2' color='orange' textAlign='center' className='headers-effect zoomIn'>
 					Reset Password
 				</Header>
 				<Form error size='large' onSubmit={handleSubmit}>

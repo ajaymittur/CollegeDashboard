@@ -1,9 +1,9 @@
 import React from "react";
-import { Card, Header, Grid } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 import { VictoryPie } from "victory";
 
 function Scores({ studentData }) {
-	const { fullname, subjects, attendance, marks, credits } = studentData;
+	const { marks } = studentData;
 
 	let chartData = [];
 	let i = 0;

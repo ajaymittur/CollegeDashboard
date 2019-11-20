@@ -1,6 +1,5 @@
 import React from "react";
-import { Card, Header, Grid } from "semantic-ui-react";
-import { VictoryPie } from "victory";
+import { Card } from "semantic-ui-react";
 import Cards from "./Cards/Cards";
 
 function Overview({ studentData }) {
