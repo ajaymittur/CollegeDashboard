@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,600&display=swap");
 
 .typer {
   font-family: Nunito;
@@ -9,4 +9,10 @@
 .nun {
   font-family: Nunito;
   font-size: 500%;
+}
+
+.txt {
+  font-family: Nunito;
+  font-size: 10%;
+  font-weight: 600;
 }

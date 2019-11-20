@@ -54,7 +54,7 @@ function ResetPassForm(props) {
 						)}
 					</Segment>
 					<Message className='zoomIn'>
-						Want to Login? <Link to='/'>Sign In</Link>
+						Want to Login? <Link to='/login'>Sign In</Link>
 					</Message>
 				</Form>
 			</Grid.Column>
