@@ -2,21 +2,13 @@ const firebase = require("firebase");
 const processData = require("./utils");
 
 const firebaseConfig = {
-	// apiKey: "AIzaSyDyqfxEVA6uXKgaVM326-VwMvvwYeqvvMQ",
 	apiKey: process.env.apiKey,
-	// authDomain: "college-dashboard-3rd-sem.firebaseapp.com",
 	authDomain: process.env.authDomain,
-	// databaseURL: "https://college-dashboard-3rd-sem.firebaseio.com",
 	databaseURL: process.env.databaseURL,
-	// projectId: "college-dashboard-3rd-sem",
 	projectId: process.env.projectId,
-	// storageBucket: "college-dashboard-3rd-sem.appspot.com",
 	storageBucket: process.env.storageBucket,
-	// messagingSenderId: "1010034751049",
 	messagingSenderId: process.env.messagingSenderId,
-	// appId: "1:1010034751049:web:a4e4a3cebb5197ba5fb198",
 	appId: process.env.appId,
-	// measurementId: "G-L3LSHQBQ2Q"
 	measurementId: process.env.measurementId
 };
 
