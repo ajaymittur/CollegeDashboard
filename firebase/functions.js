@@ -18,7 +18,7 @@ const fireDB = firebase.firestore();
 const fireAuth = firebase.auth();
 
 const actionCodeSettings = {
-	url: "http://localhost:3000" // redirect url
+	url: "https://collegedashboard.netlify.com" // redirect url
 };
 
 async function signup(accountDetails) {
@@ -51,7 +51,10 @@ async function signup(accountDetails) {
 				...processedUserData
 			});
 
-		return { isSuccess: true, message: `Successfully created new user: ${userRecord.user.uid}` };
+		return {
+			isSuccess: true,
+			message: `Successfully created new user: ${userRecord.user.uid}`
+		};
 	} catch (error) {
 		return { isSuccess: false, message: error.message };
 	}
@@ -62,7 +65,10 @@ async function login(accountDetails) {
 
 	try {
 		let userRecord = await fireAuth.signInWithEmailAndPassword(email, password);
-		return { isSuccess: true, message: `Successfully logged in user: ${userRecord.user.uid}` };
+		return {
+			isSuccess: true,
+			message: `Successfully logged in user: ${userRecord.user.uid}`
+		};
 	} catch (error) {
 		return { isSuccess: false, message: error.message };
 	}
@@ -71,7 +77,10 @@ async function login(accountDetails) {
 async function resetPass(email) {
 	try {
 		await fireAuth.sendPasswordResetEmail(email, actionCodeSettings);
-		return { isSuccess: true, message: `Password Reset mail has been sent to ${email}` };
+		return {
+			isSuccess: true,
+			message: `Password Reset mail has been sent to ${email}`
+		};
 	} catch (error) {
 		return {
 			isSuccess: false,
@@ -110,7 +119,10 @@ async function logout() {
 		await fireAuth.signOut();
 		return { isSuccess: true, message: "User logged out successfully" };
 	} catch (error) {
-		return { isSuccess: false, message: "Error occurred while logging user out" };
+		return {
+			isSuccess: false,
+			message: "Error occurred while logging user out"
+		};
 	}
 }
 
