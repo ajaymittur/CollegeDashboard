@@ -11,8 +11,8 @@ function Navbar(props) {
 	};
 
 	const logoutUser = async () => {
-		// const res = await axios.get("https://college-dashboard-backend.herokuapp.com/account/logout");
-		const res = await axios.get("http://localhost:4000/account/logout");
+		const res = await axios.get("https://college-dashboard-backend.herokuapp.com/account/logout");
+		// const res = await axios.get("http://localhost:4000/account/logout");
 		console.log(res);
 		if (res.data.isSuccess) props.history.push("/");
 		else console.error("Couldn't logout user");

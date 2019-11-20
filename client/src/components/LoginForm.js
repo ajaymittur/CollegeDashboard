@@ -6,8 +6,8 @@ import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react"
 import { Link, withRouter } from "react-router-dom";
 import useForm from "../customHooks/useForm";
 
-// const ENDPOINT = "https://college-dashboard-backend.herokuapp.com/account/login";
-const ENDPOINT = "http://localhost:4000/account/login";
+const ENDPOINT = "https://college-dashboard-backend.herokuapp.com/account/login";
+// const ENDPOINT = "http://localhost:4000/account/login";
 
 function validate(data) {
 	let errors = {};
