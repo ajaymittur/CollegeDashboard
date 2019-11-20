@@ -2,14 +2,14 @@ const firebase = require("firebase");
 const processData = require("./utils");
 
 const firebaseConfig = {
-	apiKey: "AIzaSyDyqfxEVA6uXKgaVM326-VwMvvwYeqvvMQ",
-	authDomain: "college-dashboard-3rd-sem.firebaseapp.com",
-	databaseURL: "https://college-dashboard-3rd-sem.firebaseio.com",
-	projectId: "college-dashboard-3rd-sem",
-	storageBucket: "college-dashboard-3rd-sem.appspot.com",
-	messagingSenderId: "1010034751049",
-	appId: "1:1010034751049:web:a4e4a3cebb5197ba5fb198",
-	measurementId: "G-L3LSHQBQ2Q"
+	apiKey: process.env.apiKey,
+	authDomain: process.env.authDomain,
+	databaseURL: process.env.databaseURL,
+	projectId: process.env.projectId,
+	storageBucket: process.env.storageBucket,
+	messagingSenderId: process.env.messagingSenderId,
+	appId: process.env.appId,
+	measurementId: process.env.measurementId
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -45,7 +45,7 @@ async function signup(accountDetails) {
 		let processedUserData = processData(accountDetails);
 
 		fireDB
-			.collection("students")
+			.collection("student")
 			.doc(usn)
 			.set({
 				...processedUserData

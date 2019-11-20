@@ -1,21 +1,21 @@
 function processData(accountData) {
 	const { email, usn, name } = accountData;
 
-	const creds = creditsJSON(accountData);
+	const credits = creditsJSON(accountData);
 	const marks = marksJSON(accountData);
-	const attd = attendanceJSON(accountData);
-	const subs = subjectsArray(accountData);
-	const cgpa = marksToCGPA(creds, marks);
+	const attendance = attendanceJSON(accountData);
+	const subjects = subjectsArray(accountData);
+	const cgpa = marksToCGPA(credits, marks);
 
 	return {
 		email,
 		usn,
 		fullname: name,
 		cgpa,
-		subs,
+		subjects,
 		marks,
-		creds,
-		attd
+		credits,
+		attendance
 	};
 }
 

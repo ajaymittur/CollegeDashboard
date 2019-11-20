@@ -78,19 +78,20 @@ function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [activeItem, setActiveItem] = useState("Home");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(
-          "https://college-dashboard-backend.herokuapp.com/student/getData"
-        );
-        setStudentData(res.data.userData);
-        setIsLoggedIn(res.data.isSuccess);
-        setDidFetchData(true);
-      } catch (err) {
-        setIsLoggedIn(false);
-      }
-    };
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const res = await axios.get(
+					"https://college-dashboard-backend.herokuapp.com/student/getData"
+					// "http://localhost:4000/student/getData"
+				);
+				setStudentData(res.data.userData);
+				setIsLoggedIn(res.data.isSuccess);
+				setDidFetchData(true);
+			} catch (err) {
+				setIsLoggedIn(false);
+			}
+		};
 
     fetchData();
   }, [didFetchData]);

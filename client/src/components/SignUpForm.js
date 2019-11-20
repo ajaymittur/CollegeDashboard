@@ -6,6 +6,7 @@ import { Link, withRouter } from "react-router-dom";
 import useForm from "../customHooks/useForm";
 
 const ENDPOINT = "https://college-dashboard-backend.herokuapp.com/account/signup";
+// const ENDPOINT = "http://localhost:4000/account/signup";
 
 function validate(data) {
 	let errors = {};
@@ -103,7 +104,7 @@ function SignUpForm(props) {
 									name='email'
 									type='input'
 									className='zoomIn'
-									value={formData.email}
+									value={formData.email || ""}
 								/>
 								<Form.Input
 									fluid
@@ -113,7 +114,7 @@ function SignUpForm(props) {
 									name='name'
 									type='input'
 									className='zoomIn'
-									value={formData.name}
+									value={formData.name || ""}
 								/>
 								<Form.Input
 									fluid
@@ -123,7 +124,7 @@ function SignUpForm(props) {
 									name='usn'
 									type='input'
 									className='zoomIn'
-									value={formData.usn}
+									value={formData.usn || ""}
 								/>
 								<Form.Input
 									fluid
@@ -133,7 +134,7 @@ function SignUpForm(props) {
 									name='password'
 									type='password'
 									className='zoomIn'
-									value={formData.password}
+									value={formData.password || ""}
 								/>
 								<Form.Input
 									fluid
@@ -143,7 +144,7 @@ function SignUpForm(props) {
 									name='repassword'
 									type='password'
 									className='zoomIn'
-									value={formData.repassword}
+									value={formData.repassword || ""}
 								/>
 								<Form.Input
 									label='Number of subjects'
@@ -151,7 +152,7 @@ function SignUpForm(props) {
 									onChange={handleChangeNumSubjects}
 									type='input'
 									className='zoomIn'
-									value={formData.numsubjects}
+									value={formData.numsubjects || ""}
 								/>
 								<Button type='button' onClick={() => setNewSec(1)}>
 									Next
@@ -190,7 +191,7 @@ function SignUpForm(props) {
 											label={`Subject ${i + 1}`}
 											onChange={handleChange}
 											className='zoomIn'
-											value={formData[`subject${i + 1}`]}
+											value={formData[`subject${i + 1}`] || ""}
 										/>
 										<Form.Input
 											fluid
@@ -198,7 +199,7 @@ function SignUpForm(props) {
 											label='Credits'
 											onChange={handleChange}
 											className='zoomIn'
-											value={formData[`credits${i + 1}`]}
+											value={formData[`credits${i + 1}`] || ""}
 										/>
 										<Form.Input
 											fluid
@@ -206,7 +207,7 @@ function SignUpForm(props) {
 											label={`Marks`}
 											onChange={handleChange}
 											className='zoomIn'
-											value={formData[`marks${i + 1}`]}
+											value={formData[`marks${i + 1}`] || ""}
 										/>
 										<Form.Input
 											fluid
@@ -214,7 +215,7 @@ function SignUpForm(props) {
 											label='Attendance'
 											onChange={handleChange}
 											className='zoomIn'
-											value={formData[`attd${i + 1}`]}
+											value={formData[`attd${i + 1}`] || ""}
 										/>
 									</Form.Group>
 								))}

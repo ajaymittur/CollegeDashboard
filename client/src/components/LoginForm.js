@@ -7,6 +7,7 @@ import { Link, withRouter } from "react-router-dom";
 import useForm from "../customHooks/useForm";
 
 const ENDPOINT = "https://college-dashboard-backend.herokuapp.com/account/login";
+// const ENDPOINT = "http://localhost:4000/account/login";
 
 function validate(data) {
 	let errors = {};
