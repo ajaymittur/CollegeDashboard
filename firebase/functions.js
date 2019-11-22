@@ -22,12 +22,13 @@ const actionCodeSettings = {
 };
 
 async function signup(accountDetails) {
-	const { email, usn, name, password } = accountDetails;
+	const { email, usn, name, password, profilepic } = accountDetails;
 
 	try {
 		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password);
 		userRecord.user.updateProfile({
-			displayName: name
+			displayName: name,
+			photoURL: profilepic
 		});
 
 		fireDB
@@ -39,6 +40,7 @@ async function signup(accountDetails) {
 				password,
 				name,
 				usn,
+				profilepic,
 				userId: userRecord.user.uid
 			});
 
@@ -101,7 +103,7 @@ async function getCurrentUser() {
 			if (doc.exists) {
 				response = {
 					isSuccess: true,
-					userData: doc.data(),
+					userData: { ...doc.data(), profilepic: user.photoURL },
 					message: "User data retrieved"
 				};
 			} else {

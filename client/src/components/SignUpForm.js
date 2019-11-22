@@ -1,7 +1,7 @@
 /* eslint-disable default-case */
 import "./styles/forms.css";
 import React, { useState } from "react";
-import { Button, Form, Grid, Segment, Header, Message } from "semantic-ui-react";
+import { Button, Form, Grid, Segment, Header, Message, Image } from "semantic-ui-react";
 import { Link, withRouter } from "react-router-dom";
 import useForm from "../customHooks/useForm";
 
@@ -82,7 +82,7 @@ function SignUpForm(props) {
 		case 0:
 			return (
 				<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
-					<Grid.Column style={{ maxWidth: 450 }}>
+					<Grid.Column style={{ maxWidth: 500 }}>
 						<Header as='h2' textAlign='center' color='orange' className='zoomIn'>
 							Create your account
 						</Header>
@@ -96,36 +96,60 @@ function SignUpForm(props) {
 								textAlign='left'
 								className='zoomIn'
 							>
-								<Form.Input
-									fluid
-									onChange={handleChange}
-									label='Enter Email'
-									placeholder='Email'
-									name='email'
-									type='input'
-									className='zoomIn'
-									value={formData.email || ""}
-								/>
-								<Form.Input
-									fluid
-									onChange={handleChange}
-									label='Enter Name'
-									placeholder='Name'
-									name='name'
-									type='input'
-									className='zoomIn'
-									value={formData.name || ""}
-								/>
-								<Form.Input
-									fluid
-									onChange={handleChange}
-									label='Enter USN'
-									placeholder='USN'
-									name='usn'
-									type='input'
-									className='zoomIn'
-									value={formData.usn || ""}
-								/>
+								<Form.Group widths='equal'>
+									<Image
+										src={
+											formData.profilepic ||
+											"https://react.semantic-ui.com/images/wireframe/square-image.png"
+										}
+										size='tiny'
+										circular
+									/>
+									<Form.Input
+										fluid
+										onChange={handleChange}
+										label='Link to profile picture'
+										placeholder='Link to profile picture'
+										name='profilepic'
+										type='input'
+										className='zoomIn'
+										value={formData.profilepic || ""}
+									/>
+								</Form.Group>
+
+								<Form.Group widths='equal'>
+									<Form.Input
+										fluid
+										onChange={handleChange}
+										label='Enter Email'
+										placeholder='Email'
+										name='email'
+										type='input'
+										className='zoomIn'
+										value={formData.email || ""}
+									/>
+									<Form.Input
+										fluid
+										onChange={handleChange}
+										label='Enter Name'
+										placeholder='Name'
+										name='name'
+										type='input'
+										className='zoomIn'
+										value={formData.name || ""}
+									/>
+									<Form.Input
+										fluid
+										onChange={handleChange}
+										label='Enter USN'
+										placeholder='USN'
+										name='usn'
+										type='input'
+										className='zoomIn'
+										value={formData.usn || ""}
+									/>
+								</Form.Group>
+
 								<Form.Input
 									fluid
 									onChange={handleChange}
