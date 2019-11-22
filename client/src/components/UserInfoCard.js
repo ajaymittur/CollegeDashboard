@@ -2,15 +2,11 @@ import React from "react";
 import { Card, Image } from "semantic-ui-react";
 
 function UserInfoCard({ studentData }) {
-	const { fullname, email, CGPA, USN } = studentData;
+	const { fullname, email, CGPA, USN, profilepic } = studentData;
 
 	return (
 		<Card centered>
-			<Image
-				src='https://react.semantic-ui.com/images/avatar/large/matthew.png'
-				wrapped
-				ui={false}
-			/>
+			<Image src={profilepic} wrapped ui={false} />
 			<Card.Content>
 				<Card.Header>{`${fullname}`}</Card.Header>
 				<Card.Meta>
