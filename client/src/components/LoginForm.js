@@ -40,7 +40,7 @@ function LoginForm(props) {
   if (submitResponse === true) props.history.push("/student/dashboard");
   useEffect(() => {
     if (Object.entries(errors).length > 0) setLoad(false);
-  });
+  }, [errors]);
 
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
