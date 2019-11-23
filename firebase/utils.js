@@ -11,7 +11,7 @@ function processData(accountData) {
 		email,
 		usn,
 		fullname: name,
-		CGPA: cgpa,
+		cgpa,
 		subjects,
 		marks,
 		credits,
@@ -21,16 +21,31 @@ function processData(accountData) {
 
 function marksToCGPA(creditsJSON, marksJSON) {
 	let credArray = Object.values(creditsJSON).map(val => Number(val));
-	let marksArray = Object.values(marksJSON).map(val => Number(val));
+	let gradesArray = marksToGrades(marksJSON);
 	let totalcreds = 0;
-	let credmarksprod = 0;
+	let credgradesprod = 0;
 
 	for (let i = 0; i < credArray.length; i++) {
 		totalcreds += credArray[i];
-		credmarksprod += credArray[i] * marksArray[i];
+		credgradesprod += credArray[i] * gradesArray[i];
 	}
 
-	return credmarksprod / totalcreds;
+	return credgradesprod / totalcreds;
+}
+
+function marksToGrades(marksJSON) {
+	let marksArray = Object.values(marksJSON).map(val => Number(val));
+	let gradesArray = Array();
+
+	for (let marks of marksArray) {
+		if (marks >= 90) gradesArray.push(10);
+		else if (marks >= 75) gradesArray.push(9);
+		else if (marks >= 60) gradesArray.push(8);
+		else if (marks >= 50) gradesArray.push(7);
+		else if (marks >= 40) gradesArray.push(6);
+	}
+
+	return gradesArray;
 }
 
 function creditsJSON(data) {

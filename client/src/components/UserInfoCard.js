@@ -2,7 +2,8 @@ import React from "react";
 import { Card, Image } from "semantic-ui-react";
 
 function UserInfoCard({ studentData }) {
-	const { fullname, email, CGPA, USN, profilepic } = studentData;
+	const { fullname, email, cgpa, USN, profilepic } = studentData;
+	console.log(studentData);
 
 	return (
 		<Card centered>
@@ -18,7 +19,7 @@ function UserInfoCard({ studentData }) {
 				<Card.Meta>
 					<span>Email: {email}</span>
 				</Card.Meta>
-				<Card.Description>{`${fullname} is a student with ${CGPA} CGPA.`}</Card.Description>
+				<Card.Description>{`${fullname} is a student with ${cgpa} CGPA.`}</Card.Description>
 			</Card.Content>
 		</Card>
 	);
