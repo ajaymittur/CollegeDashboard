@@ -11,7 +11,7 @@ function processData(accountData) {
 		email,
 		usn,
 		fullname: name,
-		cgpa,
+		CGPA: cgpa,
 		subjects,
 		marks,
 		credits,
