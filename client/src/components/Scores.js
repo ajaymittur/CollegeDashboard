@@ -8,6 +8,7 @@ function Scores({ studentData }) {
 	let chartData = [];
 	let i = 0;
 	for (let mark in marks) {
+		console.log(mark);
 		chartData.push({ x: Object.keys(marks)[i], y: mark });
 		++i;
 	}
