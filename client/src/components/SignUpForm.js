@@ -109,7 +109,7 @@ function SignUpForm(props) {
 										fluid
 										onChange={handleChange}
 										label='Link to profile picture'
-										placeholder='Link to profile picture'
+										placeholder='Copy the image address and paste here'
 										name='profilepic'
 										type='input'
 										className='zoomIn'
