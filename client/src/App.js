@@ -19,10 +19,10 @@ const particleParams = {
 			}
 		},
 		color: {
-			value: ["#FFA500"]
+			value: ["#66b2b2"]
 		},
 		line_linked: {
-			color: "#FFA500",
+			color:"#66b2b2",
 			opacity: 1
 		}
 	}

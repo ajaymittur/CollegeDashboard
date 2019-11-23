@@ -23,7 +23,7 @@ function Icon() {
 					marginTop: "9%"
 				}}
 			>
-				Welcome to <span style={{ color: "#ff9b21" }}>College Dashboard</span>, a new Interactive
+				Welcome to <span style={{ color: "#008080" }}>College Dashboard</span>, a new Interactive
 				Web App{" "}
 			</p>
 			<p

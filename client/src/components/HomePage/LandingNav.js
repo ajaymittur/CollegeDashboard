@@ -13,7 +13,7 @@ function LandingNav() {
 				</Menu.Item>
 
 				<Menu.Item>
-					<Button size='large' color='orange' as={Link} to='/login'>
+					<Button size='large' color='teal' as={Link} to='/login'>
 						Log in
 					</Button>
 				</Menu.Item>

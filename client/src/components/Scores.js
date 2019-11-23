@@ -17,8 +17,8 @@ function Scores({ studentData }) {
       <Header
         as="h1"
         textAlign="center"
-        color="orange"
-        style={{ marginTop: "3%" }}
+       //style={{color:"#008080"}}
+        style={{ color:"#008080" ,marginTop: "3%" }}
       >
         Marks
       </Header>

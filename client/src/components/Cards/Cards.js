@@ -25,7 +25,7 @@ function Cards(props) {
           <VictoryAxis tickValues={["Attendance", "Marks"]} />
           <VictoryAxis dependentAxis tickFormat={100} />
           <VictoryBar
-            style={{ data: { fill: "#f5a153" } }}
+            style={{ data: { fill: "teal" } }}
             data={graph.data}
             barRatio={0.7}
             labels={({ datum }) => datum.y}

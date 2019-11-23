@@ -32,8 +32,7 @@ function Attendance({ studentData }) {
       <Header
         size="huge"
         textAlign="center"
-        color="orange"
-        style={{ marginTop: "3%" }}
+        style={{ color:"#008080",marginTop: "3%" }}
       >
         Attendance
       </Header>
