@@ -13,7 +13,7 @@ function Type() {
 	});
 
 	return (
-		<Container textAlign='center' style={{ marginTop: "10%", marginBottom: "10%" }}>
+		<Container textAlign='center' style={{ marginTop: "5%", marginBottom: "5%" }}>
 			<Typist cursor={cursor}>
 				<span style={{}} className='nun'>
 					{" "}
