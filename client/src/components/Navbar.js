@@ -21,19 +21,19 @@ function Navbar(props) {
 	return (
 		<Menu posiion='left'>
 			<Menu.Item
-				color='orange'
+				color='teal'
 				name='Home'
 				active={activeItem === "Home"}
 				onClick={handleItemClick}
 			/>
 			<Menu.Item
-				color='orange'
+				color='teal'
 				name='Scores'
 				active={activeItem === "Scores"}
 				onClick={handleItemClick}
 			/>
 			<Menu.Item
-				color='orange'
+				color='teal'
 				name='Attendance'
 				active={activeItem === "Attendance"}
 				onClick={handleItemClick}

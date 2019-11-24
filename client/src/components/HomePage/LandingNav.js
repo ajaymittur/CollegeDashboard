@@ -14,7 +14,7 @@ function LandingNav() {
         </Menu.Item>
 
         <Menu.Item>
-          <Button size="large" color="orange" as={Link} to="/login" animated>
+          <Button size="large" color="teal" as={Link} to="/login" animated>
             <Button.Content visible>Login</Button.Content>
             <Button.Content hidden>
               <Icon name="arrow right" />

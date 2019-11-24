@@ -45,11 +45,11 @@ function LoginForm(props) {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="orange" textAlign="center" className="zoomIn">
+        <Header as="h2" textAlign="center" className="zoomIn" style={{color:'#008080'}}>
           Hello, there. Login to your account
         </Header>
         <Form error size="large" onSubmit={handleSubmit}>
-          <Segment raised inverted color="orange" secondary className="zoomIn">
+          <Segment raised inverted color="teal" secondary className="zoomIn">
             <Form.Input
               fluid
               onChange={handleChange}

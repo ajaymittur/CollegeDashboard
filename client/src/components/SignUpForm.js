@@ -83,14 +83,14 @@ function SignUpForm(props) {
 			return (
 				<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 					<Grid.Column style={{ maxWidth: 500 }}>
-						<Header as='h2' textAlign='center' color='orange' className='zoomIn'>
+						<Header as='h2' textAlign='center' style={{color:'#008080'}} className='zoomIn'>
 							Create your account
 						</Header>
 						<Form error size='large' onSubmit={handleSubmit}>
 							<Segment
 								raised
 								inverted
-								color='orange'
+								color='teal'
 								secondary
 								size='large'
 								textAlign='left'
@@ -194,14 +194,14 @@ function SignUpForm(props) {
 			return (
 				<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 					<Grid.Column style={{ maxWidth: 450 }}>
-						<Header as='h2' textAlign='center' color='orange' className='zoomIn'>
+						<Header as='h2' textAlign='center' style={{color:'#008080'}} className='zoomIn'>
 							Create your account
 						</Header>
 						<Form error size='large' onSubmit={handleSubmit}>
 							<Segment
 								raised
 								inverted
-								color='orange'
+								color='teal'
 								secondary
 								size='large'
 								textAlign='left'
