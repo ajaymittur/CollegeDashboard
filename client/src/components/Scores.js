@@ -17,8 +17,7 @@ function Scores({ studentData }) {
       <Header
         as="h1"
         textAlign="center"
-       //style={{color:"#008080"}}
-        style={{ color:"#008080" ,marginTop: "3%" }}
+        style={{ color: "#008080", marginTop: "3%" }}
       >
         Marks
       </Header>
@@ -43,9 +42,9 @@ function Scores({ studentData }) {
                     {
                       target: "data",
                       mutation: ({ style }) => {
-                        return style.fill === "#c43a31"
+                        return style.fill === "#00AEAE"
                           ? null
-                          : { style: { fill: "#c43a31" } };
+                          : { style: { fill: "#00AEAE" } };
                       }
                     },
                     {
@@ -72,7 +71,7 @@ function Scores({ studentData }) {
           width={400}
         >
           <VictoryLine
-            style={{ data: { fill: "#ff9b21" } }}
+            style={{ data: { fill: "#00AEAE" } }}
             alignment="start"
             data={chartData}
             events={[

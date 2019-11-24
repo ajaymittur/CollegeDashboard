@@ -16,7 +16,7 @@ function Type() {
       <Typist cursor={cursor}>
         <span style={{ marginLeft: "35%" }} className="nun">
           {" "}
-          We <span style={{ color: "#ff9b21" }}>Educate.</span>
+          We <span style={{ color: "teal" }}>Educate.</span>
         </span>
         <Typist.Backspace count={8} delay={500} />
         <span className="typer"> Emphasise.</span>

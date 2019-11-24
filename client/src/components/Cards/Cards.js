@@ -17,7 +17,7 @@ function Cards(props) {
     <div>
       <Card
         className="grow"
-        color="orange"
+        color="teal"
         raised
         style={{ marginTop: "20%", maxWidth: "95%" }}
       >
