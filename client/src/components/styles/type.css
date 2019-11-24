@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,600&display=swap");
 
 .typer {
-  font-family: Nunito;
-  font-size: 500%;
-  color: #008080;
+	font-family: Nunito;
+	font-size: 500%;
+	color: #008080;
 }
 
 .nun {
-  font-family: Nunito;
-  font-size: 500%;
+	font-family: Nunito;
+	font-size: 500%;
 }
 
 .txt {
-  font-family: Nunito;
-  font-size: 10%;
-  font-weight: 600;
+	font-family: Nunito;
+	font-weight: 600;
+	font-size: 160%;
 }
