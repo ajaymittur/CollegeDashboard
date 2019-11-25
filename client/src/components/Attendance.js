@@ -22,6 +22,7 @@ function Attendance({ studentData }) {
           success={isSuccess}
           warning={isWarning}
           error={isError}
+          active
         />
       </Grid.Column>
     );
@@ -32,7 +33,7 @@ function Attendance({ studentData }) {
       <Header
         size="huge"
         textAlign="center"
-        style={{ color:"#008080",marginTop: "3%" }}
+        style={{ color: "#008080", marginTop: "3%" }}
       >
         Attendance
       </Header>
