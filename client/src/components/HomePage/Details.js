@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../../assets/icon.svg";
+import logo1 from "../../assets/statistics.svg";
+import logo2 from "../../assets/stats2.svg";
 import "../styles/type.css";
 import { Image, Container } from "semantic-ui-react";
 import Para from "./Para";
@@ -20,13 +22,13 @@ function Details() {
 
       <Para
         float="right"
-        logo={logo}
+        logo={logo1}
         text="Track your progress through the semester and compare your performance with that of others with this interactive app!"
       />
 
       <Para
         float="left"
-        logo={logo}
+        logo={logo2}
         text="Sign Up now to check out our amazing and awe-inspiring Data Visualization and Manipulation!"
       />
     </Container>
