@@ -14,10 +14,10 @@ A super intuitve web application that allows a student to enter and display his/
 
 _**Subject to change**_
 
+ - `/` - Backend server code
  - `/client` - React frontend code
  - `/client/src/assets` - Images, icons, etc.
  - `/client/src/components` - React components and their styles
  - `/client/src/customHooks` - Custom React Hooks
- - `/` - Backend server/database code
  - `/firebase` - Code that interacts with firebase API & services (authentication & database)
  - `/aws` - Code that sets up AWS sdk and exposes upload functionality to the route through its API
