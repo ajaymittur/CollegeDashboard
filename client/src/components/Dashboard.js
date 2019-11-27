@@ -118,12 +118,7 @@ function Dashboard() {
 	} else
 		return (
 			<div>
-				<Navbar
-					name={studentData.fullname}
-					pic={studentData.profilepic}
-					activeItem={activeItem}
-					setActiveItem={setActiveItem}
-				/>
+				<Navbar name={studentData.fullname} pic={studentData.profilepic} activeItem={activeItem} setActiveItem={setActiveItem} />
 				{component}
 			</div>
 		);

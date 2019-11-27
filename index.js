@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const fb = require("./firebase/functions");
+const uploadpdf = require("./aws/upload");
 
 // Enable CORS
 app.use(function(req, res, next) {
@@ -42,9 +43,9 @@ app.post("/account/reset", async (req, res) => {
 });
 
 app.get("/account/logout", async (req, res) => {
-	let { isSuccess, message } = await fb.logout();
+	let response = await fb.logout();
 
-	res.send({ isSuccess, message });
+	res.send(response);
 });
 
 app.get("/student/getData", async (req, res) => {
@@ -54,6 +55,24 @@ app.get("/student/getData", async (req, res) => {
 	else res.status(400);
 
 	res.send(data);
+});
+
+app.post("/notes/upload", uploadpdf.any(), async (req, res) => {
+	let response = await fb.addNotes(req.files, req.body.usn);
+
+	if (response.isSuccess) res.status(200);
+	else res.status(400);
+
+	res.send(response);
+});
+
+app.get("/notes", async (req, res) => {
+	let response = await fb.getNotes();
+
+	if (response.isSuccess) res.status(200);
+	else res.status(400);
+
+	res.send(response);
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

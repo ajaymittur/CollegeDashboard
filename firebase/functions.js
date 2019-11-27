@@ -50,7 +50,8 @@ async function signup(accountDetails) {
 			.collection("student")
 			.doc(usn)
 			.set({
-				...processedUserData
+				...processedUserData,
+				notes: []
 			});
 
 		return {
@@ -95,11 +96,12 @@ async function getCurrentUser() {
 	let user = fireAuth.currentUser;
 	let response = {};
 	if (user) {
-		let docSnapshot = await fireDB
+		let querySnapshot = await fireDB
 			.collection("student")
 			.where("email", "==", user.email)
 			.get();
-		docSnapshot.forEach(doc => {
+
+		querySnapshot.forEach(doc => {
 			if (doc.exists) {
 				response = {
 					isSuccess: true,
@@ -110,6 +112,7 @@ async function getCurrentUser() {
 				response = { isSuccess: false, message: "User Data not found" };
 			}
 		});
+
 		return response;
 	} else {
 		return { isSuccess: false, message: "User Not Logged In" };
@@ -128,10 +131,61 @@ async function logout() {
 	}
 }
 
+async function addNotes(files, usn) {
+	let batch = fireDB.batch();
+	let response = { isSuccess: true, message: "Files uploaded successfully" };
+	const fileURLS = files.map(file => file.location);
+	let querySnapshot = await fireDB
+		.collection("student")
+		.orderBy("usn")
+		.startAt(usn.slice(0, 7))
+		.endAt(usn.slice(0, 7) + "\uf8ff")
+		.get();
+
+	querySnapshot.forEach(doc => {
+		if (!doc.exists) response = { isSuccess: false, message: "Files upload failed" };
+		const docRef = fireDB.collection("student").doc(doc.id);
+		batch.update(docRef, { notes: fileURLS });
+	});
+
+	await batch.commit();
+
+	return response;
+}
+
+async function getNotes() {
+	let user = fireAuth.currentUser;
+	let response = {};
+	if (user) {
+		let querySnapshot = await fireDB
+			.collection("student")
+			.where("email", "==", user.email)
+			.get();
+
+		querySnapshot.forEach(doc => {
+			if (doc.exists) {
+				response = {
+					isSuccess: true,
+					notes: doc.data().notes,
+					message: "Notes retrieved"
+				};
+			} else {
+				response = { isSuccess: false, message: "Notes not found" };
+			}
+		});
+
+		return response;
+	} else {
+		return { isSuccess: false, message: "User Not Logged In" };
+	}
+}
+
 module.exports = {
 	signup,
 	login,
 	resetPass,
 	getCurrentUser,
-	logout
+	logout,
+	addNotes,
+	getNotes
 };
