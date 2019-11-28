@@ -47,6 +47,7 @@ function SignUpForm(props) {
 			setSubCount(Number(e.target.value));
 			setFormData({
 				...formData,
+				profilepic: "https://react.semantic-ui.com/images/wireframe/square-image.png",
 				[e.target.name]: e.target.value
 			});
 		}
@@ -72,7 +73,7 @@ function SignUpForm(props) {
 								<Form.Group widths='equal'>
 									<Form.Input fluid onChange={handleChange} label='Enter Email' placeholder='Email' name='email' type='input' className='zoomIn' value={formData.email || ""} />
 									<Form.Input fluid onChange={handleChange} label='Enter Name' placeholder='Name' name='name' type='input' className='zoomIn' value={formData.name || ""} />
-									<Form.Input fluid onChange={handleChange} label='Enter USN' placeholder='USN' name='usn' type='input' className='zoomIn' value={formData.usn || ""} />
+									<Form.Input fluid onChange={handleChange} label='Enter USN' placeholder='USN' name='usn' type='input' className='zoomIn' value={formData.usn.toUpperCase() || ""} />
 								</Form.Group>
 
 								<Form.Input fluid onChange={handleChange} label='Enter Password' placeholder='Password' name='password' type='password' className='zoomIn' value={formData.password || ""} />

@@ -24,8 +24,7 @@ const actionCodeSettings = {
 
 async function signup(accountDetails) {
 	let { email, usn, name, password, profilepic } = accountDetails;
-
-	if (!profilepic) profilepiclink = "https://react.semantic-ui.com/images/wireframe/square-image.png";
+	usn = usn.toUpperCase();
 
 	try {
 		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password);
