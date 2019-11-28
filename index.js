@@ -6,7 +6,6 @@ const uploadpdf = require("./aws/upload");
 
 // Enable CORS
 app.use(function(req, res, next) {
-	console.log(req.body);
 	res.header("Access-Control-Allow-Origin", "*");
 	// res.header("Access-Control-Allow-Origin", "https://collegedashboard.netlify.com");
 	// res.header("Access-Control-Allow-Origin", "http://localhost:3000");

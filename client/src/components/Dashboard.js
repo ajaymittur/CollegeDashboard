@@ -6,7 +6,7 @@ import Overview from "./Overview";
 import Scores from "./Scores";
 import Attendance from "./Attendance";
 import UserInfoCard from "./UserInfoCard";
-import Notes from "./Notes";
+import Notes from "./PDF/Notes";
 import NotFound from "./NotFound";
 import axios from "axios";
 
