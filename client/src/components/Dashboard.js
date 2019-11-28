@@ -6,6 +6,7 @@ import Overview from "./Overview";
 import Scores from "./Scores";
 import Attendance from "./Attendance";
 import UserInfoCard from "./UserInfoCard";
+import Notes from "./Notes";
 import NotFound from "./NotFound";
 import axios from "axios";
 
@@ -101,6 +102,7 @@ function Dashboard() {
 		else if (activeItem === "Scores") return <Scores studentData={studentData} />;
 		else if (activeItem === "Attendance") return <Attendance studentData={studentData} />;
 		else if (activeItem === "Account") return <UserInfoCard studentData={studentData} />;
+		else if (activeItem === "Notes") return <Notes studentData={studentData} />;
 	};
 
 	const component = setComponent(activeItem);
