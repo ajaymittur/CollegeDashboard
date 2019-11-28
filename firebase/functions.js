@@ -135,7 +135,7 @@ async function logout() {
 async function addNotes(files, usn) {
 	let batch = fireDB.batch();
 	let response = { isSuccess: true, message: "Files uploaded successfully" };
-	// const fileURLS = files.map(file => file.location);
+	const fileURLS = files.map(file => file.location);
 	// console.log(typeof fileURLSArray);
 	// console.log(fileURLSArray);
 	let querySnapshot = await fireDB
@@ -148,7 +148,8 @@ async function addNotes(files, usn) {
 	querySnapshot.forEach(doc => {
 		if (!doc.exists) response = { isSuccess: false, message: "Files upload failed" };
 		const docRef = fireDB.collection("student").doc(doc.id);
-		files.map(file => batch.update(docRef, { notes: admin.firestore.FieldValue.arrayUnion(file.location) }));
+		const notesLinks = doc.data().notes;
+		batch.set(docRef, { notes: [...notesLinks, ...fileURLS] });
 	});
 
 	await batch.commit();
