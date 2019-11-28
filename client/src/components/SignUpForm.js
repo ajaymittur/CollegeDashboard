@@ -12,17 +12,11 @@ function validate(data) {
 	let errors = {};
 
 	if (data.password !== data.repassword) errors.passMatch = "Passwords do not match";
-
 	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) errors.correctEmail = "Enter a valid email address";
-
 	if (!data.email || !data.password || !data.repassword || !data.name || !data.usn) errors.allFilled = "Make sure you fill in all the fields";
-
 	for (let key in data) if (key.startsWith("credits") && isNaN(Number(data[key]))) errors.crednan = "Credits should be numbers";
-
 	for (let key in data) if (key.startsWith("marks") && isNaN(Number(data[key]))) errors.marksnan = "Marks should be numbers";
-
 	for (let key in data) if (key.startsWith("attd") && isNaN(Number(data[key]))) errors.attdnan = "Attendance should be numbers";
-
 	if (notComplete(data, Number(data.numsubjects))) errors.allFilled = "Make sure you fill in all subject fields";
 
 	return errors;

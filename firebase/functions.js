@@ -25,6 +25,8 @@ const actionCodeSettings = {
 async function signup(accountDetails) {
 	const { email, usn, name, password, profilepic } = accountDetails;
 
+	if (!profilepic) profilepic = "https://react.semantic-ui.com/images/wireframe/square-image.png";
+
 	try {
 		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password);
 		userRecord.user.updateProfile({
@@ -136,8 +138,7 @@ async function addNotes(files, usn) {
 	let batch = fireDB.batch();
 	let response = { isSuccess: true, message: "Files uploaded successfully" };
 	const fileURLS = files.map(file => file.location);
-	// console.log(typeof fileURLSArray);
-	// console.log(fileURLSArray);
+
 	let querySnapshot = await fireDB
 		.collection("student")
 		.orderBy("usn")
@@ -149,7 +150,7 @@ async function addNotes(files, usn) {
 		if (!doc.exists) response = { isSuccess: false, message: "Files upload failed" };
 		const docRef = fireDB.collection("student").doc(doc.id);
 		const notesLinks = doc.data().notes;
-		batch.set(docRef, { notes: [...notesLinks, ...fileURLS] });
+		batch.update(docRef, { notes: [...notesLinks, ...fileURLS] });
 	});
 
 	await batch.commit();
