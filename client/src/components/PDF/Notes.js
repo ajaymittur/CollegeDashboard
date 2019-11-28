@@ -32,7 +32,7 @@ function Notes({ studentData }) {
 
 	const handleSubmit = async () => {
 		const formData = new FormData();
-		formData.append("file", files);
+		for (let i = 0; i < files.length; i++) formData.append("file", files[i]);
 		formData.append("usn", usn);
 		try {
 			const res = await axios.post(
@@ -47,7 +47,7 @@ function Notes({ studentData }) {
 	};
 
 	const fileChange = e => {
-		setFiles(...e.target.files);
+		setFiles(e.target.files);
 	};
 
 	if (!showUploadFiles)
@@ -63,13 +63,13 @@ function Notes({ studentData }) {
 	else
 		return (
 			<Dimmer active>
-				<Form error size='large' onSubmit={handleSubmit}>
+				<Form error size='large'>
 					<Segment raised inverted color='teal' secondary className='zoomIn'>
 						<Form.Field>
 							<Button content={filesList.join(", ") || "Choose Notes"} labelPosition='left' icon='file' onClick={() => fileInputRef.current.click()} />
-							<input ref={fileInputRef} type='file' hidden onChange={fileChange} />
+							<input ref={fileInputRef} type='file' hidden multiple onChange={fileChange} />
 						</Form.Field>
-						<Button type='submit' className='zoomIn'>
+						<Button onClick={handleSubmit} className='zoomIn'>
 							Upload
 						</Button>
 						<Button onClick={() => setShowUploadFiles(false)} className='zoomIn'>
