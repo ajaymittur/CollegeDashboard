@@ -136,8 +136,8 @@ async function addNotes(files, usn) {
 	let batch = fireDB.batch();
 	let response = { isSuccess: true, message: "Files uploaded successfully" };
 	const fileURLS = files.map(file => file.location);
-	console.log(typeof fileURLS);
-	console.log(Array(fileURLS));
+	console.log(typeof [...fileURLS]);
+	console.log([...fileURLS]);
 	let querySnapshot = await fireDB
 		.collection("student")
 		.orderBy("usn")
