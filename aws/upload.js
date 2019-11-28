@@ -13,6 +13,7 @@ const upload = multer({
 		s3: s3,
 		bucket: "collegedashboard-uploads",
 		acl: "public-read",
+		cacheControl: "max-age=0",
 		metadata: function(req, file, cb) {
 			cb(null, { fieldName: file.fieldname });
 		},
