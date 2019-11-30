@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
-import { Button, Grid, Form, Segment, Dimmer } from "semantic-ui-react";
+import { Header, Button, Grid, Form, Segment, Dimmer } from "semantic-ui-react";
+import { Document, Page, Outline } from "react-pdf";
 import { pdfjs } from "react-pdf";
 import axios from "axios";
 import PDF from "./PDF";
@@ -51,11 +52,7 @@ function Notes({ studentData }) {
 
 	if (!showUploadFiles)
 		return (
-			<Grid
-				textAlign='center'
-				style={{ height: "100vh" }}
-				verticalAlign='middle'
-			>
+			<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 				<Grid.Column style={{ maxWidth: 450 }} textAlign='center'>
 					<Button onClick={() => setShowUploadFiles(true)}>Upload Notes</Button>
 					<Button onClick={getNotes}>Refresh Notes</Button>
@@ -69,27 +66,13 @@ function Notes({ studentData }) {
 				<Form error size='large'>
 					<Segment raised inverted color='teal' secondary className='zoomIn'>
 						<Form.Field>
-							<Button
-								content={filesList.join(", ") || "Choose Notes"}
-								labelPosition='left'
-								icon='file'
-								onClick={() => fileInputRef.current.click()}
-							/>
-							<input
-								ref={fileInputRef}
-								type='file'
-								hidden
-								multiple
-								onChange={fileChange}
-							/>
+							<Button content={filesList.join(", ") || "Choose Notes"} labelPosition='left' icon='file' onClick={() => fileInputRef.current.click()} />
+							<input ref={fileInputRef} type='file' hidden multiple onChange={fileChange} />
 						</Form.Field>
 						<Button onClick={handleSubmit} className='zoomIn'>
 							Upload
 						</Button>
-						<Button
-							onClick={() => setShowUploadFiles(false)}
-							className='zoomIn'
-						>
+						<Button onClick={() => setShowUploadFiles(false)} className='zoomIn'>
 							Back
 						</Button>
 					</Segment>
