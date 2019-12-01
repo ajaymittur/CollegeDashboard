@@ -149,7 +149,7 @@ async function addNotes(files, usn) {
 		if (!doc.exists) response = { isSuccess: false, message: "Files upload failed" };
 		const docRef = fireDB.collection("student").doc(doc.id);
 		const notesLinks = doc.data().notes;
-		batch.update(docRef, { notes: [...notesLinks, ...fileURLS] });
+		batch.update(docRef, { notes: [...fileURLS, ...notesLinks] });
 	});
 
 	await batch.commit();
