@@ -32,7 +32,7 @@ function PDF(props) {
 			<Document file={props.link} key={props.link} onLoadSuccess={onDocumentLoadSuccess}>
 				<Page pageNumber={pageNumber} height={500} onLoadProgress={({ loaded, total }) => console.log("Loading a document: " + (loaded / total) * 100 + "%")} />
 			</Document>
-			<p>Page {pageNumber}</p>
+			<p>Page {pageNumber} / {numPages}</p>
 			<Button icon labelPosition='left' onClick={prevPage}>
 				<Icon name='left arrow' />
 				Prev
