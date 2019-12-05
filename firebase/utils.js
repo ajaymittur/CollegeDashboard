@@ -9,7 +9,7 @@ function processData(accountData) {
 
 	return {
 		email,
-		usn,
+		usn: usn.toUpperCase(),
 		fullname: name,
 		cgpa,
 		subjects,
