@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/icon.svg";
+import logo from "../../assets/mainstats.svg";
 import logo1 from "../../assets/statistics.svg";
 import logo2 from "../../assets/stats2.svg";
 import "../styles/type.css";
