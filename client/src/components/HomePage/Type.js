@@ -14,7 +14,7 @@ function Type() {
 	return (
 		<div style={{ marginTop: "3%", marginBottom: "3%" }}>
 			<Typist cursor={cursor}>
-				<span style={{ marginLeft: "35%" }} className='nun'>
+				<span style={{ marginLeft: "40%" }} className='nun'>
 					{" "}
 					We <span style={{ color: "teal" }}>Educate.</span>
 				</span>
