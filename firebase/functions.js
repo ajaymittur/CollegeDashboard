@@ -27,6 +27,27 @@ async function signup(accountDetails) {
 	usn = usn.toUpperCase();
 
 	try {
+		let response = {};
+		let querySnapshot = await fireDB
+			.collection("accounts")
+			.where("usn", "==", usn)
+			.get();
+
+		querySnapshot.forEach(doc => {
+			if (doc.exists) {
+				response = {
+					isSuccess: false,
+					message: "User with provided USN already exists"
+				};
+			}
+		});
+
+		return response;
+	} catch (error) {
+		return { isSuccess: false, message: error.message };
+	}
+
+	try {
 		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password);
 		userRecord.user.updateProfile({
 			displayName: name,
