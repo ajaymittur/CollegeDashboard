@@ -25,9 +25,9 @@ const actionCodeSettings = {
 async function signup(accountDetails) {
 	let { email, usn, name, password, profilepic } = accountDetails;
 	usn = usn.toUpperCase();
+	let usnExists = false;
 
 	try {
-		let response = {};
 		let querySnapshot = await fireDB
 			.collection("accounts")
 			.where("usn", "==", usn)
@@ -35,55 +35,52 @@ async function signup(accountDetails) {
 
 		querySnapshot.forEach(doc => {
 			if (doc.exists) {
-				response = {
-					isSuccess: false,
-					message: "User with provided USN already exists"
-				};
+				usnExists = true;
 			}
 		});
-
-		return response;
 	} catch (error) {
 		return { isSuccess: false, message: error.message };
 	}
 
-	try {
-		let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password);
-		userRecord.user.updateProfile({
-			displayName: name,
-			photoURL: profilepic
-		});
-
-		fireDB
-			.collection("accounts")
-			.doc(usn)
-			.set({
-				createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
-				email,
-				password,
-				name,
-				usn,
-				profilepic,
-				userId: userRecord.user.uid
+	if (!usnExists) {
+		try {
+			let userRecord = await fireAuth.createUserWithEmailAndPassword(email, password);
+			userRecord.user.updateProfile({
+				displayName: name,
+				photoURL: profilepic
 			});
 
-		let processedUserData = processData(accountDetails);
+			fireDB
+				.collection("accounts")
+				.doc(usn)
+				.set({
+					createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+					email,
+					password,
+					name,
+					usn,
+					profilepic,
+					userId: userRecord.user.uid
+				});
 
-		fireDB
-			.collection("student")
-			.doc(usn)
-			.set({
-				...processedUserData,
-				notes: []
-			});
+			let processedUserData = processData(accountDetails);
 
-		return {
-			isSuccess: true,
-			message: `Successfully created new user: ${userRecord.user.uid}`
-		};
-	} catch (error) {
-		return { isSuccess: false, message: error.message };
-	}
+			fireDB
+				.collection("student")
+				.doc(usn)
+				.set({
+					...processedUserData,
+					notes: []
+				});
+
+			return {
+				isSuccess: true,
+				message: `Successfully created new user: ${userRecord.user.uid}`
+			};
+		} catch (error) {
+			return { isSuccess: false, message: error.message };
+		}
+	} else return { isSuccess: false, message: "User with provided USN already exists" };
 }
 
 async function login(accountDetails) {
