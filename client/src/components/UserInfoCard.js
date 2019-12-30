@@ -3,7 +3,6 @@ import { Card, Image } from "semantic-ui-react";
 
 function UserInfoCard({ studentData }) {
 	const { fullname, email, cgpa, usn, profilepic } = studentData;
-	console.log(studentData);
 
 	return (
 		<Card centered>
@@ -19,7 +18,7 @@ function UserInfoCard({ studentData }) {
 				<Card.Meta>
 					<span>Email: {email}</span>
 				</Card.Meta>
-				<Card.Description>{`${fullname} is a student with ${cgpa} CGPA.`}</Card.Description>
+				<Card.Description>{`${fullname} is a student with ${cgpa.toFixed(2)} CGPA.`}</Card.Description>
 			</Card.Content>
 		</Card>
 	);
