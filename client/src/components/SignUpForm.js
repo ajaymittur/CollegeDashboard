@@ -184,7 +184,18 @@ function SignUpForm(props) {
 									className='zoomIn'
 									value={formData.numsubjects || ""}
 								/>
-								<Button type='button' onClick={() => setNewSec(1)}>
+								<Button
+									type='button'
+									onClick={() => {
+										if (!formData.profilepic || !formData.profilepic.length)
+											setFormData({
+												...formData,
+												profilepic:
+													"https://react.semantic-ui.com/images/wireframe/square-image.png"
+											});
+										setNewSec(1);
+									}}
+								>
 									Next
 								</Button>
 							</Segment>
