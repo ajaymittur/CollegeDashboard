@@ -78,7 +78,7 @@ function SignUpForm(props) {
 		}
 	};
 
-	if (submitResponse === true) props.history.push("/");
+	if (submitResponse === true) props.history.push("/student/dashboard");
 
 	useEffect(() => {
 		if (Object.entries(errors).length > 0) setLoad(false);

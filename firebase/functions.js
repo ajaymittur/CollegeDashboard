@@ -73,6 +73,8 @@ async function signup(accountDetails) {
 					notes: []
 				});
 
+			await fireAuth.signInWithEmailAndPassword(email, password);
+
 			return {
 				isSuccess: true,
 				message: `Successfully created new user: ${userRecord.user.uid}`
