@@ -1,10 +1,21 @@
 import React from "react";
-import { Menu, Button, Icon } from "semantic-ui-react";
+import { Menu, Button, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 function LandingNav() {
   return (
     <Menu>
+      <Image
+        src="https://img.icons8.com/office/40/000000/class.png"
+        size="mini"
+        style={{
+          height: "40px",
+          width: "40px",
+          marginLeft: "0.5%",
+          paddingTop: "0.5%"
+        }}
+      />
+
       <Menu.Menu position="right">
         <Menu.Item>
           <Button size="large" as={Link} to="/signup" animated="fade">
