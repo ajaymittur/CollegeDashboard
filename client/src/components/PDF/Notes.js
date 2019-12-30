@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Header, Button, Grid, Form, Segment, Dimmer } from "semantic-ui-react";
-import { Document, Page, Outline } from "react-pdf";
+import { Button, Grid, Form, Segment, Dimmer } from "semantic-ui-react";
 import { pdfjs } from "react-pdf";
 import axios from "axios";
 import PDF from "./PDF";
