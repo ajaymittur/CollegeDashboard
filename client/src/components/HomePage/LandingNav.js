@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/type.css";
 import { Menu, Button, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
@@ -15,7 +16,12 @@ function LandingNav() {
           paddingTop: "0.5%"
         }}
       />
-
+      <span
+        className="txt"
+        style={{ color: "#008080", paddingTop: "1%", marginLeft: "0.5%" }}
+      >
+        CoDash
+      </span>
       <Menu.Menu position="right">
         <Menu.Item>
           <Button size="large" as={Link} to="/signup" animated="fade">
