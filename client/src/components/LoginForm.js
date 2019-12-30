@@ -27,14 +27,6 @@ function LoginForm(props) {
 
 	if (submitResponse === true) props.history.push("/student/dashboard");
 
-	// let errorMessages = Object.entries(errors).map([key, value] => <Message
-	//             error
-	//             header="Could Not Sign In"
-	//             content="Email / Password is incorrect"
-	//             size="small"
-	//             className="zoomIn"
-	//           />)
-
 	useEffect(() => {
 		if (Object.entries(errors).length > 0) setLoad(false);
 	}, [errors]);
