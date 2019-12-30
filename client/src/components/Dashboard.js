@@ -78,6 +78,7 @@ function Dashboard() {
 	const [didFetchData, setDidFetchData] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
 	const [activeItem, setActiveItem] = useState("Home");
+	document.title = "CollegeDashboard";
 
 	useEffect(() => {
 		const fetchData = async () => {
