@@ -19,8 +19,6 @@ function ResetPassForm(props) {
 	const [handleSubmit, handleChange, , , submitResponse, errors] = useForm(ENDPOINT, validate);
 	document.title = "CollegeDashboard | Reset";
 
-	if (submitResponse === true) props.history.push("/");
-
 	return (
 		<Grid textAlign='center' style={{ height: "100vh" }} verticalAlign='middle'>
 			<Grid.Column textAlign='center' style={{ maxWidth: 450 }}>
@@ -32,6 +30,7 @@ function ResetPassForm(props) {
 						<Form.Input fluid onChange={handleChange} placeholder='Email' name='email' type='input' label='Enter Email' />
 						<Button type='submit'>Reset</Button>
 						{Object.entries(errors).length > 0 && <Message error header="Couldn't Reset Password" list={Object.keys(errors).map(key => errors[key])} size='small' className='zoomIn' />}
+						{submitResponse && Object.entries(errors).length === 0 && <Message content='Password reset mail sent' size='small' className='zoomIn' />}
 					</Segment>
 					<Message className='zoomIn'>
 						Want to Login? <Link to='/login'>Sign In</Link>
