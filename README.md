@@ -1,6 +1,6 @@
 # CollegeDashboard
 
-A super intuitive web application that allows a student to enter and display his/her marks, attendance, provide his CGPA and essentially an overview of his/her performance, along with a striking visual representation of the above data with the help of graphs and charts. 
+A super intuitive web application that allows a student to share notes, enter and display his/her marks, attendance, provide his CGPA and essentially an overview of his/her performance, along with a striking visual representation of the above data with the help of graphs and charts. 
 
 ## Tech Stack
 
@@ -11,8 +11,6 @@ A super intuitive web application that allows a student to enter and display his
 - CSS (_React_): [**Semantic UI**](https://react.semantic-ui.com)
 
 ## Folder Structure
-
-_**Subject to change**_
 
  - `/` - Backend server code
  - `/client` - React frontend code
