@@ -1,4 +1,4 @@
-# CollegeDashboard
+# CollegeDashboard (CoDash)
 
 A super intuitive web application that allows a student to share notes, enter and display his/her marks, attendance, provide his CGPA and essentially an overview of his/her performance, along with a striking visual representation of the above data with the help of graphs and charts. 
 
