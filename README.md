@@ -2,6 +2,8 @@
 
 A super intuitive web application that allows a student to share notes, enter and display his/her marks, attendance, provide his CGPA and essentially an overview of his/her performance, along with a striking visual representation of the above data with the help of graphs and charts. 
 
+**UPDATE**: My AWS credits have expired and hence features that use AWS services such as file upload will **not work**
+
 ## Tech Stack
 
 - Front-End: [**React**](https://reactjs.org/)
